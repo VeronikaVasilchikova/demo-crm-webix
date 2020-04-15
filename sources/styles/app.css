@@ -1,0 +1,86 @@
+.webixappstart {
+    opacity: 0;
+}
+.webixapp {
+    transition: opacity 500ms;
+    opacity: 1;
+}
+.webix_header.webix_dark .webix_template{
+	text-align: center;
+	line-height: 56px;
+}
+
+/*top.js*/
+
+.avatar .main_photo {
+	border-radius: 25px;
+	widows: 40px;
+	height: 40px;
+	position: relative;
+	top: -4px;
+}
+.status {
+	position: relative;
+	top: -25px;
+	left: 25px;
+	font-size: 10px !important;
+	text-shadow: -1px 0 #ffffff, 0 1px #ffffff, 1px 0 #ffffff, 0 -1px #ffffff;
+}
+.green {
+	color: #20f642;
+}
+.agentname {
+	font-size: 14px;
+	text-transform: uppercase;
+	letter-spacing: 0.2px;
+	color:#313131;
+	font-weight: 700;
+	line-height: 20px;
+	display: block;
+	white-space: nowrap; 
+	text-overflow: ellipsis;
+	overflow: hidden;
+}
+
+/*Dashboard*/
+.chart_header {
+	text-align: center;
+}
+.webix_dataview_item.dataview_deals {
+	border-color: #fff;
+}
+.deals {
+	margin-top: 20px;
+	display: flex;
+	justify-content: space-between;
+	width: 300px;
+	border: 1px solid #EDEFF0;
+	padding: 5px 20px 5px 20px;
+}
+.deals_title {
+	text-transform: uppercase;
+	font-weight: 500;
+	font-size: 14px;
+}
+.deals_number {
+	font-weight: 500;
+	font-size: 14px;
+}
+
+/* listOfDeals */
+.status_green {
+	background-color: #20f642;
+	color: #fff;
+}
+.status_red {
+	background-color: #f84052;
+	color: #fff;
+}
+.myicon{
+    content: url("https://docs.webix.com/samples/65_spreadsheet/08_ui/images/edit.svg");
+    font-size: 17px;
+    display: inline-block;
+    width: 20px;
+	margin-top: 6px;
+	cursor: pointer;
+}
