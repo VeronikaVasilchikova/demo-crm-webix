@@ -4,7 +4,7 @@ import KanbanView from "./kanban";
 
 export default class TopView extends JetView {
 	config() {
-        const tabbar = {
+		const tabbar = {
 			view: "tabbar",
 			value: "List of deals",
 			localId: "tabbar",
@@ -13,8 +13,8 @@ export default class TopView extends JetView {
 				{value: "Kanban", id: "kanban"}
 			],
 			height: 50
-        };
-        
+		};
+
 		return {
 			type: "clean",
 			rows: [
@@ -27,9 +27,9 @@ export default class TopView extends JetView {
 				}
 			]
 		};
-    }
-    
-    init() {
+	}
+
+	init() {
 		this.$$("tabbar").attachEvent("onChange", id => this.$$(id).show());
 	}
 }

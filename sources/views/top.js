@@ -48,7 +48,7 @@ export default class TopView extends JetView {
 				},
 				{
 					template: `
-						<image class="main_photo" src="../../data/photos/contact_photo.jpg">
+						<image class="main_photo" src="data/photos/contact_photo.jpg">
 						<span class="webix_icon mdi mdi-circle status green"></span>
 					`,
 					width: 60,

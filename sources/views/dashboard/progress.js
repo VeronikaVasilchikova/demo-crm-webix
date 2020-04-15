@@ -29,12 +29,12 @@ export default class ProgressView extends JetView {
 						align: "center",
 						layout: "x"
 					},
-					padding:{
+					padding: {
 						top: 20,
 						bottom: 10,
 						right: 40,
 						left: 20
-					},
+					}
 				}
 			]
 		};

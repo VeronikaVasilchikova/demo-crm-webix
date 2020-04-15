@@ -25,16 +25,16 @@ export default class PopupFormView extends JetView {
 						name: "clientName",
 						required: true,
 						invalidMessage: "This field must be filled"
-          },
-          {
-						label: "Deal created", 
+					},
+					{
+						label: "Deal created",
 						labelWidth: 150,
-						view: "datepicker", 
-						name: "dealCreated", 
-						type: "date", 
+						view: "datepicker",
+						name: "dealCreated",
+						type: "date",
 						format: webix.i18n.longDateFormatStr,
 						required: true,
-						invalidMessage: "This field must be filled"	
+						invalidMessage: "This field must be filled"
 					},
 					{
 						label: "Agent",
@@ -53,23 +53,23 @@ export default class PopupFormView extends JetView {
 						options: categories,
 						required: true,
 						invalidMessage: "Category must be selected"
-          },
-          {
-						label: "Last activity", 
+					},
+					{
+						label: "Last activity",
 						labelWidth: 150,
-						view: "datepicker", 
-						name: "lastActivity", 
-						type: "date", 
+						view: "datepicker",
+						name: "lastActivity",
+						type: "date",
 						format: webix.i18n.longDateFormatStr,
 						required: true,
-						invalidMessage: "This field must be filled"	
-          },
-          {
-						label: "Next activity", 
+						invalidMessage: "This field must be filled"
+					},
+					{
+						label: "Next activity",
 						labelWidth: 150,
-						view: "datepicker", 
-						name: "nextActivity", 
-						type: "date", 
+						view: "datepicker",
+						name: "nextActivity",
+						type: "date",
 						format: webix.i18n.longDateFormatStr
 					},
 					{
@@ -83,8 +83,8 @@ export default class PopupFormView extends JetView {
 								template: "#transactionStage#"
 							}
 						}
-          },
-          {
+					},
+					{
 						label: "Status",
 						labelWidth: 150,
 						view: "combo",
@@ -97,24 +97,24 @@ export default class PopupFormView extends JetView {
 						},
 						required: true,
 						invalidMessage: "This field must be filled"
-          },
+					},
 					{
 						cols: [
-								{
-										view: "button",
-										value: "Edit",
-										localId: "btn",
-										type: "form",
-										click: () => this.edit()
-								},
-								{
-										view: "button",
-										value: "Cancel",
-										type: "form",
-										click: () => this.closeForm()
-								}
+							{
+								view: "button",
+								value: "Edit",
+								localId: "btn",
+								type: "form",
+								click: () => this.edit()
+							},
+							{
+								view: "button",
+								value: "Cancel",
+								type: "form",
+								click: () => this.closeForm()
+							}
 						]
-          },
+					},
 					{}
 				],
 				rules: {

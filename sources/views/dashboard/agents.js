@@ -39,7 +39,7 @@ export default class AgentsView extends JetView {
 				}
 			],
 			data: agentsTopFive
-		}
+		};
 
 		return {
 			gravity: 3,

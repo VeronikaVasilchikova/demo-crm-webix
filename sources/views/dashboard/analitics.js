@@ -18,27 +18,27 @@ export default class AnaliticsView extends JetView {
 							view: "toolbar",
 							cols: [
 								{
-									view: "daterangepicker", 
+									view: "daterangepicker",
 									name: "default",
 									inputWidth: 250,
 									value: {
-										start: new Date(), 
+										start: new Date(),
 										end: webix.Date.add(new Date(), 1, "month")
 									},
 									format: webix.i18n.longDateFormatStr
 								},
 								{
 									view: "combo",
-									value: "last month", 
-      								options: ["last month", "last week", "last 90 days"],
-									inputWidth: 200,
+									value: "last month",
+									options: ["last month", "last week", "last 90 days"],
+									inputWidth: 200
 								}
 							]
 						}
 					]
 				},
 				{
-					view:"dataview",
+					view: "dataview",
 					localId: "dataAnalitics",
 					xCount: 3,
 					yCount: 1,
@@ -58,7 +58,7 @@ export default class AnaliticsView extends JetView {
 							</div>
 							
 						`
-					},
+					}
 				}
 			]
 		};
