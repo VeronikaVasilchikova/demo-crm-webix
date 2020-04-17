@@ -6,8 +6,9 @@ export default class TopView extends JetView {
 	config() {
 		const tabbar = {
 			view: "tabbar",
-			value: "List of deals",
+			value: "listOfDeals",
 			localId: "tabbar",
+			multiview: true,
 			options: [
 				{value: "List of deals", id: "listOfDeals"},
 				{value: "Kanban", id: "kanban"}

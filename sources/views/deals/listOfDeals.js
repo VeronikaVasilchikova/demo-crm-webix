@@ -1,5 +1,6 @@
 import {JetView} from "webix-jet";
 import PopupFormView from "../popupFormForDeals";
+import {clients} from "../../models/clients";
 import {agents} from "../../models/agents";
 import {deals} from "../../models/deals";
 import {dealsProgress} from "../../models/dealsProgress";
@@ -18,9 +19,10 @@ export default class ListOfDealsView extends JetView {
 			select: true,
 			columns: [
 				{
-					id: "clientName",
+					id: "clientNameId",
 					header: "Client Name",
-					fillspace: true
+					fillspace: true,
+					template: obj => clients.getItem(obj.clientNameId).value
 				},
 				{
 					id: "dealCreated",
@@ -82,13 +84,16 @@ export default class ListOfDealsView extends JetView {
 				myicon: (e, id) => {
 					this.editItem(id.row);
 				}
-			}
+			},
+			data: deals
 		};
 	}
 
 	init() {
-		this.$$("grid").parse(deals);
 		this._jetPopupForm = this.ui(PopupFormView);
+		this.$$("grid").attachEvent("onItemDblClick", (id) => {
+			this.show(`/top/detailsOfDeals?id=${id}`);
+		});
 	}
 
 	editItem(id) {
