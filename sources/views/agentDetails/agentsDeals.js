@@ -1,13 +1,11 @@
 import {JetView} from "webix-jet";
-import PopupFormView from "../popupFormForDeals";
 import {clients} from "../../models/clients";
-import {agents} from "../../models/agents";
 import {deals} from "../../models/deals";
 import {dealsProgress} from "../../models/dealsProgress";
 import {statuses} from "../../models/statuses";
 import {categories} from "../../models/categories";
 
-export default class ListOfDealsView extends JetView {
+export default class AgentsDealsView extends JetView {
 	config() {
 		return {
 			view: "datatable",
@@ -30,13 +28,6 @@ export default class ListOfDealsView extends JetView {
 					sort: "date",
 					format: webix.i18n.longDateFormatStr,
 					adjust: true
-				},
-				{
-					id: "agentId",
-					header: ["Agent", {content: "selectFilter"}],
-					fillspace: true,
-					options: agents,
-					template: obj => agents.getItem(obj.agentId).name
 				},
 				{
 					id: "categoryId",
@@ -73,32 +64,39 @@ export default class ListOfDealsView extends JetView {
 					header: ["Status", {content: "selectFilter"}],
 					options: statuses,
 					adjust: true
-				},
-				{
-					header: ["", ""],
-					template: "<span class='myicon'></span>",
-					adjust: true
 				}
-			],
-			onClick: {
-				myicon: (e, id) => {
-					this.editItem(id.row);
-				}
-			},
-			data: deals
+			]
 		};
 	}
 
 	init() {
-		this._jetPopupForm = this.ui(PopupFormView);
-		this.$$("grid").attachEvent("onItemDblClick", (id) => {
-			this.show(`/top/detailsOfDeals?id=${id}`);
-		});
+		this.table = this.$$("grid");
+		this.table.sync(deals);
 	}
 
-	editItem(id) {
-		if (id) {
-			this._jetPopupForm.showPopupForm(id);
-		}
+	urlChange() {
+		this.table.eachColumn((id) => {
+			let filter = this.table.getFilter(id);
+			if (filter) {
+				if (filter.setValue) {
+					filter.setValue("");
+				}
+				else {
+					filter.value = "";
+				}
+			}
+		});
+		webix.promise.all([
+			clients.waitData,
+			deals.waitData,
+			dealsProgress.waitData,
+			statuses.waitData,
+			categories.waitData
+		]).then(() => {
+			const id = this.getParam("id", true);
+			if (id && deals.exists(id)) {
+				deals.data.filter(item => item.agentId.toString() === id.toString());
+			}
+		});
 	}
 }
