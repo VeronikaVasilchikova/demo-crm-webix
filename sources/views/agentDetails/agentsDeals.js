@@ -71,14 +71,21 @@ export default class AgentsDealsView extends JetView {
 
 	init() {
 		this.table = this.$$("grid");
+		this.table.sync(deals);
 	}
 
 	urlChange() {
-		const id = this.getParam("id", true);
-		if (id && deals.exists(id)) {
-			this.table.sync(deals, () => {
-				this.table.filter(item => item.agentId.toString() === id.toString());
-			});
-		}
+		webix.promise.all([
+			clients.waitData,
+			deals.waitData,
+			dealsProgress.waitData,
+			statuses.waitData,
+			categories.waitData
+		]).then(() => {
+			const id = this.getParam("id", true);
+			if (id && deals.exists(id)) {
+				deals.data.filter(item => item.agentId.toString() === id.toString());
+			}
+		});
 	}
 }
