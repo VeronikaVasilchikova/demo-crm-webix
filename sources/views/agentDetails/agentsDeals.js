@@ -75,6 +75,8 @@ export default class AgentsDealsView extends JetView {
 	}
 
 	urlChange() {
+		this.table.getFilter("categoryId").value = "";
+		this.table.getFilter("statusId").value = "";
 		webix.promise.all([
 			clients.waitData,
 			deals.waitData,
