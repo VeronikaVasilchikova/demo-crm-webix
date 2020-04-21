@@ -13,7 +13,7 @@ export default class AgentsGoogleMapView extends JetView {
 					localId: "radio",
 					name: "radio",
 					vertical: true,
-					value: 1,
+					value: "1",
 					options: [
 						{id: 1, value: "All"},
 						{id: 2, value: "Buy"},
@@ -83,6 +83,7 @@ export default class AgentsGoogleMapView extends JetView {
 		this.map = this.$$("map");
 		this.list = this.$$("list");
 		this.form = this.$$("form");
+		this.radio = this.$$("radio");
 	}
 
 	urlChange() {
@@ -94,40 +95,30 @@ export default class AgentsGoogleMapView extends JetView {
 			if (id && agents.exists(id)) {
 				this.map.clearAll();
 				this.list.clearAll();
-				let newAgentEstate = agentEstate.filter(item => item.agentId.toString() === id.toString());
-				this.map.parse(newAgentEstate);
-				this.list.parse(newAgentEstate);
-				this.$$("radio").attachEvent("onChange", (newv) => {
-					switch (newv) {
-						case "1":
-							this.map.clearAll();
-							this.list.clearAll();
-							this.map.parse(newAgentEstate);
-							this.list.parse(newAgentEstate);
-							break;
-						case "2":
-							this.map.clearAll();
-							this.list.clearAll();
-							this.map.parse(newAgentEstate.filter(item => item.status === "Buy"));
-							this.list.parse(newAgentEstate.filter(item => item.status === "Buy"));
-							break;
-						case "3":
-							this.map.clearAll();
-							this.list.clearAll();
-							this.map.parse(newAgentEstate.filter(item => item.status === "Sell"));
-							this.list.parse(newAgentEstate.filter(item => item.status === "Sell"));
-							break;
-						case "4":
-							this.map.clearAll();
-							this.list.clearAll();
-							this.map.parse(newAgentEstate.filter(item => item.status === "Rent"));
-							this.list.parse(newAgentEstate.filter(item => item.status === "Rent"));
-							break;
-						default:
-							break;
-					}
-				});
+
+				this.map.parse(agentEstate.filter(item => item.agentId.toString() === id.toString()));
+				this.list.parse(agentEstate.filter(item => item.agentId.toString() === id.toString()));
 			}
+			this.$$("radio").attachEvent("onChange", (newv) => {
+				this.map.clearAll();
+				this.list.clearAll();
+				if (newv === "1") {
+					this.map.parse(agentEstate.filter(item => item.agentId.toString() === id.toString()));
+					this.list.parse(agentEstate.filter(item => item.agentId.toString() === id.toString()));
+				}
+				else if (newv === "2") {
+					this.map.parse(agentEstate.filter(item => item.agentId.toString() === id.toString() && item.status === "Buy"));
+					this.list.parse(agentEstate.filter(item => item.agentId.toString() === id.toString() && item.status === "Buy"));
+				}
+				else if (newv === "3") {
+					this.map.parse(agentEstate.filter(item => item.agentId.toString() === id.toString() && item.status === "Sell"));
+					this.list.parse(agentEstate.filter(item => item.agentId.toString() === id.toString() && item.status === "Sell"));
+				}
+				else {
+					this.map.parse(agentEstate.filter(item => item.agentId.toString() === id.toString() && item.status === "Rent"));
+					this.list.parse(agentEstate.filter(item => item.agentId.toString() === id.toString() && item.status === "Rent"));
+				}
+			});
 		});
 	}
 }
