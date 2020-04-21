@@ -11,27 +11,32 @@ export default class AnaliticsView extends JetView {
 					type: "clean",
 					cols: [
 						{
+							gravity: 1,
 							template: "Deals Analytics",
 							type: "header"
 						},
 						{
+							gravity: 10,
 							view: "toolbar",
 							cols: [
-								{
-									view: "daterangepicker",
-									name: "default",
-									inputWidth: 250,
-									value: {
-										start: new Date(),
-										end: webix.Date.add(new Date(), 1, "month")
-									},
-									format: webix.i18n.longDateFormatStr
-								},
 								{
 									view: "combo",
 									value: "last month",
 									options: ["last month", "last week", "last 90 days"],
-									inputWidth: 200
+									inputWidth: 200,
+									on: {
+										onChange(newValue) {
+											if (newValue === "last week") {
+												this.$scope.setParam("id", "1", true);
+											}
+											else if (newValue === "last month") {
+												this.$scope.setParam("id", "2", true);
+											}
+											else if (newValue === "last 90 days") {
+												this.$scope.setParam("id", "3", true);
+											}
+										}
+									}
 								}
 							]
 						}
@@ -49,15 +54,14 @@ export default class AnaliticsView extends JetView {
 						height: 100,
 						css: "dataview_deals",
 						template: `
-							<div class="deals">
-								<div>
-									<div class="deals_title">#title#</div>
-									<div class="deals_amount">$ #amount#</div>
-								</div> 
-								<div style="color: #color#" class="deals_number">#number#</div> 
-							</div>
-							
-						`
+								<div class="deals">
+									<div>
+										<div class="deals_title">#value#</div>
+										<div class="deals_amount">$ #amount#</div>
+									</div>
+									<div style="color: #color#" class="deals_number">#number#</div>
+								</div>
+							`
 					}
 				}
 			]
@@ -65,6 +69,19 @@ export default class AnaliticsView extends JetView {
 	}
 
 	init() {
-		this.$$("dataAnalitics").parse(analitics);
+		this.setParam("id", "2", true);
+		const id = this.getParam("id", true);
+		if (id && analitics.exists(id)) {
+			const item = analitics.getItem(id);
+			this.$$("dataAnalitics").parse(item.title);
+		}
+	}
+
+	urlChange() {
+		const id = this.getParam("id", true);
+		if (id && analitics.exists(id)) {
+			const item = analitics.getItem(id);
+			this.$$("dataAnalitics").parse(item.title);
+		}
 	}
 }

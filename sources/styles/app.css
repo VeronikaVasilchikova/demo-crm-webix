@@ -52,6 +52,7 @@ border-color: #fff;
 margin-top: 20px;
 display: flex;
 justify-content: space-between;
+align-items: center;
 width: 300px;
 border: 1px solid #EDEFF0;
 padding: 5px 20px 5px 20px;
@@ -63,16 +64,16 @@ font-size: 14px;
 }
 .deals_number {
 font-weight: 500;
-font-size: 14px;
+font-size: 32px;
 }
 
 /* listOfDeals */
 .status_green {
-background-color: #20f642;
+background-color: #55CD97;
 color: #fff;
 }
 .status_red {
-background-color: #f84052;
+background-color: #FF5C4C;
 color: #fff;
 }
 .myicon{
@@ -127,7 +128,20 @@ line-height: 20px;
 padding:8px 12px;
 }
 
-/* contactus */
+/* AgentsGoogleMap */
+.estate_label {
+
+}
+.estate_address {
+
+}
+.estate_price {
+	display: block;
+}
+
+/* Tasks */
+
+/* Contactus */
 .webix_view.ifr_template .webix_template{
 padding:0px;
 }

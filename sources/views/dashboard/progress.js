@@ -19,7 +19,7 @@ export default class ProgressView extends JetView {
 					barWidth: 30,
 					value: "#value#",
 					color: "#color#",
-					label: "#value#",
+					label: "#transactionStage#",
 					tooltip: {
 						template: "#value#"
 					},
@@ -32,7 +32,7 @@ export default class ProgressView extends JetView {
 					padding: {
 						top: 20,
 						bottom: 10,
-						right: 40,
+						right: 90,
 						left: 20
 					}
 				}
