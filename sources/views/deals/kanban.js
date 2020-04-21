@@ -1,10 +1,9 @@
 import {JetView} from "webix-jet";
 import {kanbanData} from "../../models/kanbanData";
+import {users} from "../../models/agents";
 
 export default class KanBanView extends JetView {
 	config() {
-		const impth = "https://docs.webix.com/samples/63_kanban/common/imgs/";
-
 		const config = {
 			view: "kanban",
 			cols: [
@@ -12,93 +11,82 @@ export default class KanBanView extends JetView {
 					header: "Request",
 					body: {
 						view: "kanbanlist",
-						status: "new"
+						status: "request"
 					}
 				},
 				{
 					header: "Contacting",
 					body: {
 						view: "kanbanlist",
-						status: "work"
+						status: "contacting"
 					}
 				},
 				{
 					header: "Define Details",
 					body: {
 						view: "kanbanlist",
-						status: "work"
+						status: "define details"
 					}
 				},
 				{
 					header: "Tour Scheduled",
 					body: {
 						view: "kanbanlist",
-						status: "work"
+						status: "tour scheduled"
 					}
 				},
 				{
 					header: "Paused",
 					body: {
 						view: "kanbanlist",
-						status: "work"
+						status: "paused"
 					}
 				},
 				{
 					header: "Listing Agreement",
 					body: {
 						view: "kanbanlist",
-						status: "work"
+						status: "listing agreement"
 					}
 				},
 				{
 					header: "Purchase offer",
 					body: {
 						view: "kanbanlist",
-						status: "work"
+						status: "purchase offer"
 					}
 				},
 				{
 					header: "Escrow",
 					body: {
 						view: "kanbanlist",
-						status: "work"
+						status: "escrow"
 					}
 				},
 				{
 					header: "Inspections",
 					body: {
 						view: "kanbanlist",
-						status: "test"
+						status: "inspections"
 					}
 				},
 				{
 					header: "Lending",
 					body: {
 						view: "kanbanlist",
-						status: "work"
+						status: "lending"
 					}
 				},
 				{
 					header: "Closing",
 					body: {
 						view: "kanbanlist",
-						status: "done"
+						status: "closing"
 					}
 				}
 			],
 			editor: true,
-			users: [
-				{id: 1, value: "Rick Lopes", image: `${impth}1.jpg`},
-				{id: 2, value: "Martin Farrell", image: `${impth}2.jpg`},
-				{id: 3, value: "Douglass Moore", image: `${impth}3.jpg`},
-				{id: 4, value: "Eric Doe", image: `${impth}4.jpg`},
-				{id: 5, value: "Sophi Elliman", image: `${impth}5.jpg`},
-				{id: 6, value: "Anna O'Neal"},
-				{id: 7, value: "Marcus Storm", image: `${impth}7.jpg`},
-				{id: 8, value: "Nick Branson", image: `${impth}8.jpg`},
-				{id: 9, value: "CC", image: `${impth}9.jpg`},
-				{id: 10, value: "CC", image: `${impth}10.jpg`}
-			],
+			users,
 			tags: [
 				{id: 1, value: "Sell"},
 				{id: 2, value: "Rent"},

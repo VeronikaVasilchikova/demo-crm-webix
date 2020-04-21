@@ -3,14 +3,12 @@ import {agents} from "../models/agents";
 
 export default class AgentssView extends JetView {
 	config() {
-		const theme = this.app.config.theme;
 		return {
 			cols: [
 				{
 					rows: [
 						{
 							view: "toolbar",
-							css: theme,
 							localId: "toolbar",
 							elements: [
 								{width: 8},

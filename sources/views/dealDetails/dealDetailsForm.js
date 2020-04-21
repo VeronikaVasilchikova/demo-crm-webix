@@ -10,6 +10,7 @@ import {categories} from "../../models/categories";
 export default class DealDetailsFormView extends JetView {
 	config() {
 		const client = {
+			margin: 25,
 			rows: [
 				{
 					label: "Client Name",
@@ -39,6 +40,7 @@ export default class DealDetailsFormView extends JetView {
 		};
 
 		const deal =	{
+			margin: 25,
 			rows: [
 				{
 					label: "Deal created",
@@ -116,6 +118,7 @@ export default class DealDetailsFormView extends JetView {
 						{
 							view: "form",
 							localId: "clientForm",
+							margin: 25,
 							rows: [
 								client,
 								{

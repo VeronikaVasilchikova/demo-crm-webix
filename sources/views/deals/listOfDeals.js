@@ -14,65 +14,75 @@ export default class ListOfDealsView extends JetView {
 			localId: "grid",
 			css: "webix_data_border webix_header_border",
 			scroll: "y",
+			editable: true,
+			editaction: "custom",
 			autoconfig: true,
+			tooltip: {
+				template: `
+					<p>Choose a cell and press the Enter to edit</p>
+					<p>Make a double click to open the cell editor to see additional information about this deal</p>
+				`
+			},
 			rowCss: "#css#",
-			select: true,
+			select: "cell",
 			columns: [
 				{
-					id: "clientNameId",
+					id: "newClientName",
 					header: "Client Name",
 					fillspace: true,
-					template: obj => clients.getItem(obj.clientNameId).value
+					editor: "text"
 				},
 				{
 					id: "dealCreated",
 					header: "Deal created",
 					sort: "date",
 					format: webix.i18n.longDateFormatStr,
-					adjust: true
+					adjust: true,
+					editor: "date"
 				},
 				{
 					id: "agentId",
 					header: ["Agent", {content: "selectFilter"}],
 					fillspace: true,
 					options: agents,
-					template: obj => agents.getItem(obj.agentId).name
+					template: obj => agents.getItem(obj.agentId).name,
+					editor: "select"
 				},
 				{
 					id: "categoryId",
 					header: ["Category", {content: "selectFilter"}],
 					options: categories,
-					adjust: true
+					adjust: true,
+					editor: "select"
 				},
 				{
 					id: "lastActivity",
 					header: "Last activity",
+					sort: "date",
 					format: webix.i18n.longDateFormatStr,
-					adjust: true
+					adjust: true,
+					editor: "date"
 				},
 				{
 					id: "nextActivity",
 					header: "Next activity",
+					sort: "date",
 					format: webix.i18n.longDateFormatStr,
-					adjust: true
+					adjust: true,
+					editor: "date"
 				},
 				{
-					id: "dealProgressId",
+					id: "newDealProgress",
 					header: "Deal progress",
-					options: dealsProgress,
 					adjust: true,
-					template: (obj) => {
-						if (obj.dealProgressId) {
-							return dealsProgress.getItem(obj.dealProgressId).transactionStage;
-						}
-						return "";
-					}
+					editor: "text"
 				},
 				{
 					id: "statusId",
 					header: ["Status", {content: "selectFilter"}],
 					options: statuses,
-					adjust: true
+					adjust: true,
+					editor: "select"
 				},
 				{
 					header: ["", ""],
@@ -84,8 +94,7 @@ export default class ListOfDealsView extends JetView {
 				myicon: (e, id) => {
 					this.editItem(id.row);
 				}
-			},
-			data: deals
+			}
 		};
 	}
 
@@ -93,6 +102,33 @@ export default class ListOfDealsView extends JetView {
 		this._jetPopupForm = this.ui(PopupFormView);
 		this.$$("grid").attachEvent("onItemDblClick", (id) => {
 			this.show(`/top/detailsOfDeals?id=${id}`);
+		});
+
+		webix.UIManager.addHotKey("enter", (view) => {
+			const pos = view.getSelectedId();
+			view.edit(pos);
+		}, this.$$("tableDetails"));
+
+		webix.promise.all([
+			clients.waitData,
+			deals.waitData,
+			dealsProgress.waitData,
+			statuses.waitData,
+			categories.waitData,
+			agents.waitData
+		]).then(() => {
+			this.$$("grid").sync(deals, () => {
+				deals.config.data.forEach((item) => {
+					item.newClientName = clients.getItem(item.clientNameId).value;
+					if (item.dealProgressId) {
+						item.newDealProgress = dealsProgress.getItem(item.dealProgressId).transactionStage;
+					}
+					else {
+						item.newDealProgress = "";
+					}
+				});
+			});
+			deals.data.filter();
 		});
 	}
 

@@ -23,7 +23,7 @@ export default class PopupFormView extends JetView {
 						label: "Client Name",
 						labelWidth: 150,
 						view: "text",
-						name: "newClientNameId",
+						name: "newClientName",
 						required: true,
 						invalidMessage: "This field must be filled"
 					},
@@ -103,7 +103,7 @@ export default class PopupFormView extends JetView {
 						cols: [
 							{
 								view: "button",
-								value: "Edit",
+								value: "Save",
 								localId: "btn",
 								type: "form",
 								click: () => this.edit()
@@ -119,7 +119,7 @@ export default class PopupFormView extends JetView {
 					{}
 				],
 				rules: {
-					newClientNameId: webix.rules.isNotEmpty,
+					newClientName: webix.rules.isNotEmpty,
 					dealCreated: webix.rules.isNotEmpty,
 					agentId: webix.rules.isNotEmpty,
 					categoryId: webix.rules.isNotEmpty,
@@ -137,9 +137,6 @@ export default class PopupFormView extends JetView {
 	showPopupForm(id) {
 		if (id && deals.exists(id)) {
 			const item = webix.copy(deals.getItem(id));
-			if (item.clientNameId) {
-				item.newClientNameId = clients.getItem(item.clientNameId).value;
-			}
 			this.form.setValues(item);
 		}
 		this.getRoot().show();
@@ -158,7 +155,7 @@ export default class PopupFormView extends JetView {
 				if (values && values.id) {
 					deals.updateItem(values.id, values);
 					clients.waitSave(() => {
-						clients.getItem(values.clientNameId).value = values.newClientNameId;
+						clients.getItem(values.clientNameId).value = values.newClientName;
 					});
 				}
 			});
