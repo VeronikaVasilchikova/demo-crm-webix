@@ -9,7 +9,7 @@ import {categories} from "../../models/categories";
 
 export default class ListOfDealsView extends JetView {
 	config() {
-		return {
+		const datatable = {
 			view: "datatable",
 			localId: "grid",
 			css: "webix_data_border webix_header_border",
@@ -27,10 +27,11 @@ export default class ListOfDealsView extends JetView {
 			select: "cell",
 			columns: [
 				{
-					id: "newClientName",
-					header: "Client Name",
+					id: "clientNameId",
+					header: ["Client Name", {content: "selectFilter"}],
 					fillspace: true,
-					editor: "text"
+					options: clients,
+					editor: "select"
 				},
 				{
 					id: "dealCreated",
@@ -45,7 +46,6 @@ export default class ListOfDealsView extends JetView {
 					header: ["Agent", {content: "selectFilter"}],
 					fillspace: true,
 					options: agents,
-					template: obj => agents.getItem(obj.agentId).name,
 					editor: "select"
 				},
 				{
@@ -72,10 +72,17 @@ export default class ListOfDealsView extends JetView {
 					editor: "date"
 				},
 				{
-					id: "newDealProgress",
-					header: "Deal progress",
+					id: "dealProgressId",
+					header: ["Deal progress", {content: "selectFilter"}],
 					adjust: true,
-					editor: "text"
+					options: dealsProgress,
+					template: obj => {
+						if (obj.dealProgressId) {
+							return dealsProgress.getItem(obj.dealProgressId).value;
+						}
+						return "";
+					},
+					editor: "select"
 				},
 				{
 					id: "statusId",
@@ -95,6 +102,22 @@ export default class ListOfDealsView extends JetView {
 					this.editItem(id.row);
 				}
 			}
+		};
+
+		const btnAdd = {
+			view: "button",
+			type: "icon",
+			icon: "wxi-plus-square",
+			label: "New deal",
+			align: "right",
+			click: () => this.addItem()
+		};
+
+		return {
+			rows: [
+				datatable,
+				btnAdd
+			]
 		};
 	}
 
@@ -118,15 +141,7 @@ export default class ListOfDealsView extends JetView {
 			agents.waitData
 		]).then(() => {
 			this.$$("grid").sync(deals, () => {
-				deals.config.data.forEach((item) => {
-					item.newClientName = clients.getItem(item.clientNameId).value;
-					if (item.dealProgressId) {
-						item.newDealProgress = dealsProgress.getItem(item.dealProgressId).transactionStage;
-					}
-					else {
-						item.newDealProgress = "";
-					}
-				});
+				this.$$("grid").sort("#dealCreated#", "desc", "date");
 			});
 			deals.data.filter();
 		});
@@ -136,5 +151,9 @@ export default class ListOfDealsView extends JetView {
 		if (id) {
 			this._jetPopupForm.showPopupForm(id);
 		}
+	}
+
+	addItem() {
+		this._jetPopupForm.showPopupForm();
 	}
 }

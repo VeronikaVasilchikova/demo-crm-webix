@@ -5,8 +5,6 @@ const numberToStr = webix.Number.numToStr({
 	decimalSize: 0
 });
 
-const impth = "https://docs.webix.com/samples/63_kanban/common/imgs/";
-
 const data = [
 	{id: 1, name: "Jerry Mattedi", wonDeal: "2019-08-14", topDealValue: "810027", rating: "5", location: "New York", deals: [{id: 1, name: "Open", value: 4, color: "yellow"}, {id: 2, name: "Won", value: 0, color: "#55CD97"}, {id: 3, name: "Lost", value: 0, color: "#FF5C4C"}]},
 	{id: 2, name: "Elianora Vasilov", wonDeal: "2019-08-13", topDealValue: "692455", rating: "4", location: "Ontario", deals: [{id: 1, name: "Open", value: 0, color: "yellow"}, {id: 2, name: "Won", value: 2, color: "#55CD97"}, {id: 3, name: "Lost", value: 0, color: "#FF5C4C"}]},
@@ -38,11 +36,11 @@ export const agents = new webix.DataCollection({
 	}
 });
 
-export const users = data.map((item) => {
+export const usersAgents = data.map((item) => {
 	const obj = {
-		id: item.id,
+		id: item.id + 30,
 		value: item.name,
-		image: `${impth}${item.id}.jpg`
+		image: ""
 	};
 	return obj;
 });

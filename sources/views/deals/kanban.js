@@ -1,6 +1,6 @@
 import {JetView} from "webix-jet";
 import {kanbanData} from "../../models/kanbanData";
-import {users} from "../../models/agents";
+import {usersAgents} from "../../models/agents";
 
 export default class KanBanView extends JetView {
 	config() {
@@ -86,7 +86,7 @@ export default class KanBanView extends JetView {
 				}
 			],
 			editor: true,
-			users,
+			users: usersAgents,
 			tags: [
 				{id: 1, value: "Sell"},
 				{id: 2, value: "Rent"},

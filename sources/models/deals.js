@@ -85,7 +85,7 @@ export const deals = new webix.DataCollection({
 			lastActivity: "2020-04-04",
 			dealProgressId: "",
 			nextActivity: "",
-			statusId: "2",
+			statusId: "3",
 			activity: [
 				{id: 1, value: "Request", date: "2020-03-12"},
 				{id: 2, value: "Contacting", date: "2020-03-14"},
@@ -172,9 +172,9 @@ export const deals = new webix.DataCollection({
 			agentId: "6",
 			categoryId: "3",
 			lastActivity: "2020-04-08",
-			dealProgressId: "5",
+			dealProgressId: "",
 			nextActivity: "",
-			statusId: "1",
+			statusId: "3",
 			activity: [
 				{id: 1, value: "Request", date: "2020-02-13"},
 				{id: 2, value: "Contacting", date: "2020-02-13"},
@@ -185,7 +185,7 @@ export const deals = new webix.DataCollection({
 		},
 		{
 			id: 11,
-			clientNameId: "1",
+			clientNameId: "11",
 			dealCreated: "2019-12-01",
 			agentId: "3",
 			categoryId: "2",
@@ -202,7 +202,7 @@ export const deals = new webix.DataCollection({
 		},
 		{
 			id: 12,
-			clientNameId: "2",
+			clientNameId: "12",
 			dealCreated: "2019-11-01",
 			agentId: "4",
 			categoryId: "1",
@@ -222,7 +222,7 @@ export const deals = new webix.DataCollection({
 		},
 		{
 			id: 13,
-			clientNameId: "3",
+			clientNameId: "13",
 			dealCreated: "2020-01-20",
 			agentId: "9",
 			categoryId: "3",
@@ -243,22 +243,27 @@ export const deals = new webix.DataCollection({
 		},
 		{
 			id: 14,
-			clientNameId: "4",
+			clientNameId: "14",
 			dealCreated: "2020-02-01",
 			agentId: "7",
 			categoryId: "2",
 			lastActivity: "2020-04-10",
 			dealProgressId: "",
 			nextActivity: "",
-			statusId: "3",
+			statusId: "2",
 			activity: [
 				{id: 1, value: "Request", date: "2020-02-01"},
-				{id: 2, value: "Closing", date: "2020-04-10"}
+				{id: 2, value: "Contacting", date: "2020-02-01"},
+				{id: 3, value: "Define details", date: "2020-02-01"},
+				{id: 4, value: "Listing agreement", date: "2020-02-01"},
+				{id: 5, value: "Purchase offer", date: "2020-04-10"},
+				{id: 6, value: "Lending", date: "2020-04-10"},
+				{id: 7, value: "Closing", date: "2020-04-10"}
 			]
 		},
 		{
 			id: 15,
-			clientNameId: "5",
+			clientNameId: "15",
 			dealCreated: "2020-03-12",
 			agentId: "5",
 			categoryId: "3",
@@ -278,7 +283,7 @@ export const deals = new webix.DataCollection({
 		},
 		{
 			id: 16,
-			clientNameId: "6",
+			clientNameId: "16",
 			dealCreated: "2020-04-01",
 			agentId: "3",
 			categoryId: "1",
@@ -292,14 +297,14 @@ export const deals = new webix.DataCollection({
 		},
 		{
 			id: 17,
-			clientNameId: "7",
+			clientNameId: "17",
 			dealCreated: "2020-04-10",
 			agentId: "10",
-			categoryId: "1",
+			categoryId: "2",
 			lastActivity: "2020-04-11",
 			dealProgressId: "",
 			nextActivity: "",
-			statusId: "3",
+			statusId: "2",
 			activity: [
 				{id: 1, value: "Request", date: "2020-04-10"},
 				{id: 2, value: "Closing", date: "2020-04-11"}
@@ -307,7 +312,7 @@ export const deals = new webix.DataCollection({
 		},
 		{
 			id: 18,
-			clientNameId: "8",
+			clientNameId: "18",
 			dealCreated: "2019-12-28",
 			agentId: "8",
 			categoryId: "1",
@@ -322,7 +327,7 @@ export const deals = new webix.DataCollection({
 		},
 		{
 			id: 19,
-			clientNameId: "9",
+			clientNameId: "19",
 			dealCreated: "2020-01-23",
 			agentId: "6",
 			categoryId: "2",
@@ -342,7 +347,7 @@ export const deals = new webix.DataCollection({
 		},
 		{
 			id: 20,
-			clientNameId: "10",
+			clientNameId: "20",
 			dealCreated: "2020-02-13",
 			agentId: "4",
 			categoryId: "3",
@@ -360,7 +365,7 @@ export const deals = new webix.DataCollection({
 		},
 		{
 			id: 21,
-			clientNameId: "1",
+			clientNameId: "21",
 			dealCreated: "2019-12-01",
 			agentId: "1",
 			categoryId: "2",
@@ -375,7 +380,7 @@ export const deals = new webix.DataCollection({
 		},
 		{
 			id: 22,
-			clientNameId: "2",
+			clientNameId: "22",
 			dealCreated: "2019-11-01",
 			agentId: "2",
 			categoryId: "1",
@@ -395,7 +400,7 @@ export const deals = new webix.DataCollection({
 		},
 		{
 			id: 23,
-			clientNameId: "3",
+			clientNameId: "23",
 			dealCreated: "2020-01-20",
 			agentId: "7",
 			categoryId: "3",
@@ -414,7 +419,7 @@ export const deals = new webix.DataCollection({
 		},
 		{
 			id: 24,
-			clientNameId: "4",
+			clientNameId: "24",
 			dealCreated: "2020-02-01",
 			agentId: "5",
 			categoryId: "2",
@@ -429,7 +434,7 @@ export const deals = new webix.DataCollection({
 		},
 		{
 			id: 25,
-			clientNameId: "5",
+			clientNameId: "25",
 			dealCreated: "2020-03-12",
 			agentId: "3",
 			categoryId: "3",
@@ -449,7 +454,7 @@ export const deals = new webix.DataCollection({
 		},
 		{
 			id: 26,
-			clientNameId: "6",
+			clientNameId: "26",
 			dealCreated: "2020-04-01",
 			agentId: "1",
 			categoryId: "1",
@@ -472,22 +477,22 @@ export const deals = new webix.DataCollection({
 		},
 		{
 			id: 27,
-			clientNameId: "7",
+			clientNameId: "27",
 			dealCreated: "2020-04-10",
-			agentId: "8",
+			agentId: "7",
 			categoryId: "1",
 			lastActivity: "2020-04-12",
 			dealProgressId: "",
 			nextActivity: "",
-			statusId: "3",
+			statusId: "1",
 			activity: [
 				{id: 1, value: "Request", date: "2020-04-10"},
-				{id: 2, value: "Closing", date: "2020-04-12"}
+				{id: 2, value: "Contacting", date: "2020-04-10"}
 			]
 		},
 		{
 			id: 28,
-			clientNameId: "8",
+			clientNameId: "28",
 			dealCreated: "2019-12-28",
 			agentId: "10",
 			categoryId: "1",
@@ -502,7 +507,7 @@ export const deals = new webix.DataCollection({
 		},
 		{
 			id: 29,
-			clientNameId: "9",
+			clientNameId: "29",
 			dealCreated: "2020-01-23",
 			agentId: "4",
 			categoryId: "2",
@@ -522,7 +527,7 @@ export const deals = new webix.DataCollection({
 		},
 		{
 			id: 30,
-			clientNameId: "10",
+			clientNameId: "30",
 			dealCreated: "2020-02-13",
 			agentId: "6",
 			categoryId: "3",

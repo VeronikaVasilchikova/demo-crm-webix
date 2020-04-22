@@ -1,13 +1,14 @@
 import {JetView} from "webix-jet";
 import {comments} from "../models/comments";
-import {users} from "../models/users";
+import {usersAgents} from "../models/agents";
+import {usersClients} from "../models/clients";
 
 export default class EmailView extends JetView {
 	config() {
 		return {
 			view: "comments",
 			localId: "comments",
-			users
+			users: usersClients.concat(usersAgents)
 		};
 	}
 
