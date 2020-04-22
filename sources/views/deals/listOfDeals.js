@@ -76,7 +76,7 @@ export default class ListOfDealsView extends JetView {
 					header: ["Deal progress", {content: "selectFilter"}],
 					adjust: true,
 					options: dealsProgress,
-					template: obj => {
+					template: (obj) => {
 						if (obj.dealProgressId) {
 							return dealsProgress.getItem(obj.dealProgressId).value;
 						}
