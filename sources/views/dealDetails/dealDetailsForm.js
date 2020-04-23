@@ -10,28 +10,29 @@ import {categories} from "../../models/categories";
 export default class DealDetailsFormView extends JetView {
 	config() {
 		const client = {
+			margin: 25,
 			rows: [
 				{
 					label: "Client Name",
-					labelWidth: 150,
+					labelWidth: 90,
 					view: "text",
 					name: "clientName"
 				},
 				{
 					label: "Email",
-					labelWidth: 150,
+					labelWidth: 90,
 					view: "text",
 					name: "email"
 				},
 				{
 					label: "Phone",
-					labelWidth: 150,
+					labelWidth: 90,
 					view: "text",
 					name: "phone"
 				},
 				{
 					label: "Source",
-					labelWidth: 150,
+					labelWidth: 90,
 					view: "text",
 					name: "source"
 				}
@@ -39,10 +40,11 @@ export default class DealDetailsFormView extends JetView {
 		};
 
 		const deal =	{
+			margin: 25,
 			rows: [
 				{
 					label: "Deal created",
-					labelWidth: 150,
+					labelWidth: 110,
 					view: "datepicker",
 					name: "dealCreated",
 					type: "date",
@@ -50,7 +52,7 @@ export default class DealDetailsFormView extends JetView {
 				},
 				{
 					label: "Status",
-					labelWidth: 150,
+					labelWidth: 110,
 					view: "combo",
 					name: "statusId",
 					options: {
@@ -62,33 +64,28 @@ export default class DealDetailsFormView extends JetView {
 				},
 				{
 					label: "Agent",
-					labelWidth: 150,
+					labelWidth: 110,
 					view: "combo",
 					name: "agentId",
 					options: agents
 				},
 				{
 					label: "Category",
-					labelWidth: 150,
+					labelWidth: 110,
 					view: "combo",
 					name: "categoryId",
 					options: categories
 				},
 				{
 					label: "Deal progress",
-					labelWidth: 150,
+					labelWidth: 110,
 					view: "combo",
 					name: "dealProgressId",
-					options: {
-						body: {
-							data: dealsProgress,
-							template: "#transactionStage#"
-						}
-					}
+					options: dealsProgress
 				},
 				{
 					label: "Last activity",
-					labelWidth: 150,
+					labelWidth: 110,
 					view: "datepicker",
 					name: "lastActivity",
 					type: "date",
@@ -96,7 +93,7 @@ export default class DealDetailsFormView extends JetView {
 				},
 				{
 					label: "Next activity",
-					labelWidth: 150,
+					labelWidth: 110,
 					view: "datepicker",
 					name: "nextActivity",
 					type: "date",
@@ -116,6 +113,7 @@ export default class DealDetailsFormView extends JetView {
 						{
 							view: "form",
 							localId: "clientForm",
+							margin: 25,
 							rows: [
 								client,
 								{

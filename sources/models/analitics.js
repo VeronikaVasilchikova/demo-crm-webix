@@ -7,13 +7,39 @@ const numberToStr = webix.Number.numToStr({
 
 export const analitics = new webix.DataCollection({
 	data: [
-		{id: 1, title: "Open deals", number: "34", amount: "421673", color: "blue"},
-		{id: 2, title: "Lost deals", number: "15", amount: "211324", color: "red"},
-		{id: 3, title: "Won deals", number: "4", amount: "311734", color: "green"}
+		{
+			id: 1,
+			period: "week",
+			title: [
+				{id: 1, value: "Open deals", color: "", number: "4", amount: "40000"},
+				{id: 2, value: "Lost deals", color: "red", number: "3", amount: "30000"},
+				{id: 3, value: "Won deals", color: "green", number: "6", amount: "60000"}
+			]
+		},
+		{
+			id: 2,
+			period: "month",
+			title: [
+				{id: 1, value: "Open deals", color: "", number: "15", amount: "150000"},
+				{id: 2, value: "Lost deals", color: "red", number: "5", amount: "50000"},
+				{id: 3, value: "Won deals", color: "green", number: "12", amount: "120000"}
+			]
+		},
+		{
+			id: 3,
+			period: "90days",
+			title: [
+				{id: 1, value: "Open deals", color: "", number: "25", amount: "250000"},
+				{id: 2, value: "Lost deals", color: "red", number: "7", amount: "70000"},
+				{id: 3, value: "Won deals", color: "green", number: "36", amount: "360000"}
+			]
+		}
 	],
 	scheme: {
 		$init: (obj) => {
-			obj.amount = numberToStr(obj.amount);
+			obj.title.forEach((item) => {
+				item.amount = numberToStr(item.amount);
+			});
 		}
 	}
 });

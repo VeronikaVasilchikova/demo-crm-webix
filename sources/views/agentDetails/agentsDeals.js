@@ -31,7 +31,7 @@ export default class AgentsDealsView extends JetView {
 				},
 				{
 					id: "categoryId",
-					header: ["Category", {content: "selectFilter"}],
+					header: ["Category", {content: "selectFilter", value: ""}],
 					options: categories,
 					adjust: true
 				},

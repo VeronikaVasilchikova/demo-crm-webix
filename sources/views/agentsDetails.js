@@ -10,14 +10,15 @@ export default class DetailsOfDealsView extends JetView {
 			type: "space",
 			rows: [
 				{rows: [AgentsSplineChartView]},
+				{rows: [AgentsGoogleMapView]},
 				{
 					type: "space",
 					cols: [
-						{rows: [AgentsPieChartView]},
-						{rows: [AgentsGoogleMapView]}
+						{rows: [AgentsPieChartView], gravity: 1},
+						{rows: [AgentsDealsView], gravity: 3}
 					]
-				},
-				{rows: [AgentsDealsView]}
+				}
+
 			]
 		};
 	}

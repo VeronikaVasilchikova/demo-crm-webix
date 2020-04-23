@@ -14,7 +14,7 @@ export default class PopupFormView extends JetView {
 			position: "center",
 			width: 500,
 			move: true,
-			head: "Edit this deal",
+			head: " ",
 			body: {
 				view: "form",
 				localId: "form",
@@ -22,8 +22,9 @@ export default class PopupFormView extends JetView {
 					{
 						label: "Client Name",
 						labelWidth: 150,
-						view: "text",
-						name: "newClientNameId",
+						view: "combo",
+						name: "clientNameId",
+						options: clients,
 						required: true,
 						invalidMessage: "This field must be filled"
 					},
@@ -78,24 +79,14 @@ export default class PopupFormView extends JetView {
 						labelWidth: 150,
 						view: "combo",
 						name: "dealProgressId",
-						options: {
-							body: {
-								data: dealsProgress,
-								template: "#transactionStage#"
-							}
-						}
+						options: dealsProgress
 					},
 					{
 						label: "Status",
 						labelWidth: 150,
 						view: "combo",
 						name: "statusId",
-						options: {
-							body: {
-								data: statuses,
-								template: "#value#"
-							}
-						},
+						options: statuses,
 						required: true,
 						invalidMessage: "This field must be filled"
 					},
@@ -103,10 +94,10 @@ export default class PopupFormView extends JetView {
 						cols: [
 							{
 								view: "button",
-								value: "Edit",
+								value: "Save",
 								localId: "btn",
 								type: "form",
-								click: () => this.edit()
+								click: () => this.addOrEdit()
 							},
 							{
 								view: "button",
@@ -119,7 +110,7 @@ export default class PopupFormView extends JetView {
 					{}
 				],
 				rules: {
-					newClientNameId: webix.rules.isNotEmpty,
+					clientNameId: webix.rules.isNotEmpty,
 					dealCreated: webix.rules.isNotEmpty,
 					agentId: webix.rules.isNotEmpty,
 					categoryId: webix.rules.isNotEmpty,
@@ -137,12 +128,13 @@ export default class PopupFormView extends JetView {
 	showPopupForm(id) {
 		if (id && deals.exists(id)) {
 			const item = webix.copy(deals.getItem(id));
-			if (item.clientNameId) {
-				item.newClientNameId = clients.getItem(item.clientNameId).value;
-			}
 			this.form.setValues(item);
 		}
 		this.getRoot().show();
+		const someBtnAction = id ? "Save changes" : "Add new deal";
+		const someHeadAction = id ? "Edit this deal" : "Add new deal";
+		this.getRoot().getHead().setHTML(someHeadAction);
+		this.$$("btn").setValue(someBtnAction);
 	}
 
 	closeForm() {
@@ -151,15 +143,15 @@ export default class PopupFormView extends JetView {
 		this.getRoot().hide();
 	}
 
-	edit() {
+	addOrEdit() {
 		if (this.form.validate()) {
 			const values = this.form.getValues();
 			deals.waitSave(() => {
 				if (values && values.id) {
 					deals.updateItem(values.id, values);
-					clients.waitSave(() => {
-						clients.getItem(values.clientNameId).value = values.newClientNameId;
-					});
+				}
+				else {
+					deals.add(values, 0);
 				}
 			});
 			this.closeForm();

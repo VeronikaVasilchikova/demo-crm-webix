@@ -16,7 +16,7 @@ export default class AgentsPieChartView extends JetView {
 					type: "donut",
 					value: "#value#",
 					color: "#color#",
-					innerRadius: 40,
+					innerRadius: 60,
 					shadow: 0,
 					gradient: true,
 					lineColor: obj => obj.color,

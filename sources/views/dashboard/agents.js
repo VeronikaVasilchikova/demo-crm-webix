@@ -14,11 +14,17 @@ export default class AgentsView extends JetView {
 			localId: "grid",
 			scroll: "y",
 			autoconfig: true,
+			css: "webix_data_border webix_header_border",
 			columns: [
 				{
 					id: "name",
-					header: "",
+					header: "Agents",
 					fillspace: 2
+				},
+				{
+					id: "rating",
+					header: "Rating",
+					fillspace: 1
 				},
 				{
 					id: "wonDeal",
