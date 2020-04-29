@@ -12,69 +12,94 @@ line-height: 56px;
 
 /*top.js*/
 .avatar .main_photo {
-border-radius: 25px;
-width: 40px;
-height: 40px;
-position: relative;
-top: -4px;
+	border-radius: 25px;
+	width: 40px;
+	height: 40px;
+	position: relative;
+	top: -4px;
 }
 .status {
-position: relative;
-top: -25px;
-left: 25px;
-font-size: 10px !important;
-text-shadow: -1px 0 #ffffff, 0 1px #ffffff, 1px 0 #ffffff, 0 -1px #ffffff;
+	position: relative;
+	top: -25px;
+	left: 25px;
+	font-size: 10px !important;
+	text-shadow: -1px 0 #ffffff, 0 1px #ffffff, 1px 0 #ffffff, 0 -1px #ffffff;
 }
 .green {
-color: #20f642;
+	color: #20f642;
 }
 .agentname {
-font-size: 14px;
-text-transform: uppercase;
-letter-spacing: 0.2px;
-color:#313131;
-font-weight: 700;
-line-height: 20px;
-display: block;
-white-space: nowrap;
-text-overflow: ellipsis;
-overflow: hidden;
+	font-size: 14px;
+	text-transform: uppercase;
+	letter-spacing: 0.2px;
+	color:#313131;
+	font-weight: 700;
+	line-height: 20px;
+	display: block;
+	white-space: nowrap;
+	text-overflow: ellipsis;
+	overflow: hidden;
 }
 
 /*Dashboard*/
 .chart_header {
-text-align: center;
+	text-align: center;
 }
 .webix_dataview_item.dataview_deals {
 border-color: #fff;
 }
 .deals {
-margin-top: 20px;
-display: flex;
-justify-content: space-between;
-align-items: center;
-width: 300px;
-border: 1px solid #EDEFF0;
-padding: 5px 20px 5px 20px;
+	margin-top: 20px;
+	display: flex;
+	justify-content: space-between;
+	align-items: center;
+	width: 300px;
+	border: 1px solid #EDEFF0;
+	padding: 5px 20px 5px 20px;
 }
 .deals_title {
-text-transform: uppercase;
-font-weight: 500;
-font-size: 14px;
+	text-transform: uppercase;
+	font-weight: 500;
+	font-size: 14px;
 }
 .deals_number {
-font-weight: 500;
-font-size: 32px;
+	font-weight: 500;
+	font-size: 32px;
+}
+.progress_bar_element {
+	background-color: #f5f5f5;
+	border-radius: 5px;
+	border: solid 0.7px #8089a6;
+	width: 100%;
+	height: 10px;
+	-webkit-box-shadow: inset 0 1px 2px rgba(0, 0, 0, 0.1);
+	box-shadow: inset 0 1px 2px rgba(0, 0, 0, 0.1);
+	margin-top: 14px;
+	overflow: hidden;
+	cursor: pointer;
+}
+.progress_result_green {
+	background-color: #52cfa1;
+}
+.progress_result_yellow {
+	background-color: #f2bc61;
+}
+.progress_result_red {
+	background-color: #f58f90;
+}
+.progress_result {
+	height: 100%;
+	box-shadow: inset 0 -1px 0 rgba(0, 0, 0, 0.15);
 }
 
 /* listOfDeals */
 .status_green {
-background-color: #55CD97;
-color: #fff;
+	background-color: #55CD97;
+	color: #fff;
 }
 .status_red {
-background-color: #FF5C4C;
-color: #fff;
+	background-color: #FF5C4C;
+	color: #fff;
 }
 .myicon{
 	content: url("https://docs.webix.com/samples/65_spreadsheet/08_ui/images/edit.svg");
@@ -84,53 +109,74 @@ color: #fff;
 	margin-top: 6px;
 	cursor: pointer;
 }
+.webix_cell:hover {
+	background: #97f5f0;
+}
 
 /* dealDetailsVariants */
 .estateImage {
-width: 180px;
-height: 180px;
-display: block;
+	width: 250px;
+	display: block;
+	border-radius: 10px;
 }
 .estateVariants {
-display: flex;
-justify-content: flex-start;
-align-items: center;
+	display: flex;
+	justify-content: space-between;
+	align-items: center;
+}
+.estateVariants_left {
+	margin-right: 15px;
 }
 
 /* Agents */
 .agentPhoto{
-display: inline-block;
-border-radius: 25px;
-width: 48px;
-height: 48px;
-float: left;
+	display: inline-block;
+	border-radius: 25px;
+	width: 48px;
+	height: 48px;
+	float: left;
 }
 .text {
-padding: 4px 4px 4px 16px;
-display: inline-block;
+	padding: 4px 4px 4px 16px;
+	display: inline-block;
 }
 .agentName{
-font-size: 14px;
-letter-spacing: 0.2px;
-color: #313131;
-font-weight: 500;
-line-height: 20px;
-display: block;
+	font-size: 14px;
+	letter-spacing: 0.2px;
+	color: #313131;
+	font-weight: 500;
+	line-height: 20px;
+	display: block;
 }
 .agentMoney{
-color: #475466;
-display: block;
-letter-spacing: 0.2px;
-line-height: 20px;
+	color: #475466;
+	display: block;
+	letter-spacing: 0.2px;
+	line-height: 20px;
 }
 .agents_list .webix_list_item,
 .agents_list .webix_list_item.webix_selected{
-padding:8px 12px;
+	padding:8px 12px;
 }
 
 /* AgentsGoogleMap */
+.estate_left {
+	display: flex;
+	justify-content: space-between;
+	align-items: center;
+	letter-spacing: 0.2px;
+	line-height: 1;
+	margin-top: 5px;
+}
+.estate {
+	width: 100px;
+	display: block;
+	border-radius: 5px;
+	margin-right: 10px;
+}
 .estate_label {
-
+	display: block;
+	font-weight: 700;
 }
 .estate_address {
 
@@ -140,11 +186,73 @@ padding:8px 12px;
 }
 
 /* Tasks */
+.touch_demo {
+	background: #EFF1FB;
+	position: relative;
+}
+.demo_qr_container {
+	position:absolute;
+	left:calc(50% - 550px); top:280px;
+	text-align: center;
+	width: 240px;
+}
+.demo_qr {
+	/* background:url(../common/qr-code-scheduler.png); */
+	background-size: contain;
+	width:200px; height:200px;
+	margin: 0 auto;
+}
+.demo_screen{
+	width:370px;
+	height:656px;
+	position:absolute;
+	top:118px;
+	left:5px;
+	right: 0;
+	margin: 0 auto;
+	background: white;
+}
+.iphone_screen{
+	/* background: url(/assets/demo/scheduler/iphone.png) no-repeat; */
+	width:448px;
+	height:990px;
+	position:absolute;
+	top:10px;
+	left:0;
+	right: 0;
+	margin: 0 auto;
+}
+.iphone_text{
+	font:16px/25px "Roboto", sans-serif;
+	letter-spacing: 0;
+	color: #666;
+	padding-top: 15px;
+}
+.iphone_text a {
+	color: #009688;
+}
+.iphone_text a:hover {
+	color: #00baa8;
+}
+
+@media screen and (max-width: 1300px) {
+	.demo_qr_container {
+		left: 70px;
+	}
+	.iphone_screen {
+		right: auto;
+		left: 340px;
+	}
+	.demo_screen {
+		right: auto;
+		left:382px;
+	}
+}
 
 /* Contactus */
 .webix_view.ifr_template .webix_template{
-padding:0px;
+	padding:0px;
 }
 .webix_view.ifr_template > .webix_disabled{
-opacity:1 !important;
+	opacity:1 !important;
 }
