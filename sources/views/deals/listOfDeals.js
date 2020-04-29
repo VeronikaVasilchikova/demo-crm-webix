@@ -20,18 +20,18 @@ export default class ListOfDealsView extends JetView {
 			tooltip: {
 				template: `
 					<p>Choose a cell and press the Enter to edit</p>
-					<p>Make a double click to open the cell editor to see additional information about this deal</p>
+					<p>Make a double click to see additional information about this deal</p>
 				`
 			},
 			rowCss: "#css#",
-			select: "cell",
+			select: true,
 			columns: [
 				{
 					id: "clientNameId",
 					header: ["Client Name", {content: "selectFilter"}],
 					fillspace: true,
 					options: clients,
-					editor: "select"
+					editor: "myeditor"
 				},
 				{
 					id: "dealCreated",
@@ -52,8 +52,7 @@ export default class ListOfDealsView extends JetView {
 					id: "categoryId",
 					header: ["Category", {content: "selectFilter"}],
 					options: categories,
-					adjust: true,
-					editor: "select"
+					adjust: true
 				},
 				{
 					id: "lastActivity",
@@ -94,13 +93,21 @@ export default class ListOfDealsView extends JetView {
 				{
 					header: ["", ""],
 					template: "<span class='myicon'></span>",
-					adjust: true
+					adjust: true,
+					tooltip: false
+				},
+				{
+					header: ["", ""],
+					template: "{common.trashIcon()}",
+					adjust: true,
+					tooltip: false
 				}
 			],
 			onClick: {
 				myicon: (e, id) => {
 					this.editItem(id.row);
-				}
+				},
+				"wxi-trash": (e, id) => this.removeDeal(id)
 			}
 		};
 
@@ -113,10 +120,23 @@ export default class ListOfDealsView extends JetView {
 			click: () => this.addItem()
 		};
 
+		const btnToExcel = {
+			view: "button",
+			label: "Convert to Excel",
+			align: "right",
+			localId: "btnToExcel",
+			click: () => this.convertToExcel()
+		};
+
 		return {
 			rows: [
 				datatable,
-				btnAdd
+				{
+					cols: [
+						btnAdd,
+						btnToExcel
+					]
+				}
 			]
 		};
 	}
@@ -124,12 +144,27 @@ export default class ListOfDealsView extends JetView {
 	init() {
 		this._jetPopupForm = this.ui(PopupFormView);
 		this.$$("grid").attachEvent("onItemDblClick", (id) => {
-			this.show(`/top/detailsOfDeals?id=${id}`);
+			let category = "";
+			if (id && deals.exists(id)) {
+				const item = deals.getItem(id).categoryId;
+				if (item && categories.exists(item)) {
+					category = categories.getItem(item).value;
+				}
+			}
+			this.show(`/top/detailsOfDeals?id=${id}?category=${category}`);
 		});
 
 		webix.UIManager.addHotKey("enter", (view) => {
 			const pos = view.getSelectedId();
 			view.edit(pos);
+			console.log(pos);
+			if (pos.column === "categoryId") {
+				webix.message({
+					text: "You can't edit this cell",
+					type: "error",
+					expire: 10000
+				});
+			}
 		}, this.$$("tableDetails"));
 
 		webix.promise.all([
@@ -145,6 +180,17 @@ export default class ListOfDealsView extends JetView {
 			});
 			deals.data.filter();
 		});
+
+		webix.editors.myeditor = webix.extend({
+			getValue() {
+				clients.updateItem(this.value, {clientName: this.getInputNode(this.node).value});
+				return this.value;
+			},
+			setValue(value) {
+				value = clients.getItem(value).value;
+				this.getInputNode(this.node).value = value;
+			}
+		}, webix.editors.text);
 	}
 
 	editItem(id) {
@@ -155,5 +201,38 @@ export default class ListOfDealsView extends JetView {
 
 	addItem() {
 		this._jetPopupForm.showPopupForm();
+	}
+
+	removeDeal(id) {
+		webix.confirm({
+			title: "Remove this deal",
+			ok: "Yes",
+			cancel: "No",
+			text: "Are you sure you want to remove this deal?"
+		}).then(() => webix.confirm({
+			title: "Warning!",
+			type: "confirm-warning",
+			text: "You are about to agree. Are you sure?"
+		})).then(() => {
+			deals.remove(id);
+		});
+		return false;
+	}
+
+	convertToExcel() {
+		webix.toExcel(this.$$("grid"), {
+			filename: "Deals",
+			name: "Deals",
+			columns: {
+				clientNameId: {header: "Client Name", width: 200},
+				dealCreated: {header: "Deal Created", width: 200},
+				agentId: {header: "Agent", width: 200},
+				categoryId: {header: "Category", width: 100},
+				lastActivity: {header: "Last Activity", width: 200},
+				nextActivity: {header: "Next Activity", width: 200},
+				dealProgressId: {header: "Deal Progress", width: 200},
+				statusId: {header: "Status", width: 200}
+			}
+		});
 	}
 }

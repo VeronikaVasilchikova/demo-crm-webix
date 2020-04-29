@@ -49,15 +49,15 @@ export default class AgentsDealsView extends JetView {
 				},
 				{
 					id: "dealProgressId",
-					header: "Deal progress",
+					header: ["Deal progress", {content: "selectFilter"}],
 					options: dealsProgress,
 					adjust: true,
 					template: (obj) => {
 						if (obj.dealProgressId) {
-							return dealsProgress.getItem(obj.dealProgressId).transactionStage;
+							return dealsProgress.getItem(obj.dealProgressId).value;
 						}
 						return "";
-					}
+					},
 				},
 				{
 					id: "statusId",

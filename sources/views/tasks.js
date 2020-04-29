@@ -5,7 +5,8 @@ export default class TasksView extends JetView {
 	config() {
 		const config = {
 			view: "scheduler",
-			localId: "scheduler"
+			localId: "scheduler",
+			css: "iphone"
 		};
 		return webix.require({
 			"https://cdn.webix.com/site/scheduler/scheduler.js?v=7.2.7": true,

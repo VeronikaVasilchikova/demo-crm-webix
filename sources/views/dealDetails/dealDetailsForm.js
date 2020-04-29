@@ -35,6 +35,39 @@ export default class DealDetailsFormView extends JetView {
 					labelWidth: 90,
 					view: "text",
 					name: "source"
+				},
+				{
+					view: "textarea",
+					label: "Notes",
+					placeholder: "Type text"
+				},
+				{
+					view: "multicombo",
+					label: "Property preference",
+					labelPosition: "top",
+					name: "tags",
+					localId: "combo",
+					placeholder: "Click to add tags",
+					options: tags,
+					hidden: true
+				},
+				{},
+				{
+					cols: [
+						{
+							view: "button",
+							value: "Save",
+							localId: "btn",
+							type: "form",
+							click: () => this.edit(this.clientForm, clients)
+						},
+						{
+							view: "button",
+							value: "Reset",
+							type: "form",
+							click: () => this.resetForm(this.clientForm)
+						}
+					]
 				}
 			]
 		};
@@ -98,6 +131,24 @@ export default class DealDetailsFormView extends JetView {
 					name: "nextActivity",
 					type: "date",
 					format: webix.i18n.longDateFormatStr
+				},
+				{},
+				{
+					cols: [
+						{
+							view: "button",
+							value: "Save",
+							localId: "btn",
+							type: "form",
+							click: () => this.edit(this.dealForm, deals)
+						},
+						{
+							view: "button",
+							value: "Reset",
+							type: "form",
+							click: () => this.resetForm(this.dealForm)
+						}
+					]
 				}
 			]
 		};
@@ -115,30 +166,14 @@ export default class DealDetailsFormView extends JetView {
 							localId: "clientForm",
 							margin: 25,
 							rows: [
-								client,
-								{
-									view: "multicombo",
-									label: "Property preference",
-									labelPosition: "top",
-									name: "tags",
-									localId: "combo",
-									placeholder: "Click to add tags",
-									options: tags
-								},
-								{
-									view: "textarea",
-									label: "Notes",
-									placeholder: "Type text"
-								},
-								{}
+								client
 							]
 						},
 						{
 							view: "form",
 							localId: "dealForm",
 							elements: [
-								deal,
-								{}
+								deal
 							]
 						}
 					]
@@ -156,6 +191,38 @@ export default class DealDetailsFormView extends JetView {
 			this.dealForm.setValues(item);
 			const clientItem = clients.getItem(item.clientNameId);
 			this.clientForm.setValues(clientItem);
+		}
+		if (this.getParam("category") !== "Sell") {
+			this.$$("combo").show();
+		}
+	}
+
+	edit(form, store) {
+		if (form.validate()) {
+			const values = form.getValues();
+			store.waitSave(() => {
+				if (values && values.id) {
+					store.updateItem(values.id, values);
+				}
+			});
+		}
+	}
+
+	resetForm(form) {
+		const values = form.getCleanValues();
+		if (form.isDirty()) {
+			webix.confirm({
+				title: "Reset without saving changes",
+				ok: "Yes",
+				cancel: "No",
+				text: "Are you sure you want to reset without saving changes?"
+			}).then(() => webix.confirm({
+				title: "Warning!",
+				type: "confirm-warning",
+				text: "You are about to agree. Are you sure?"
+			})).then(() => {
+				form.setValues(values);
+			});
 		}
 	}
 }
