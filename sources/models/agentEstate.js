@@ -2,7 +2,7 @@ export const agentEstate = [
 	{
 		id: 1,
 		agentId: "1",
-		image: "",
+		image: "1",
 		price: "1000000",
 		description: "An Architectural Masterpiece in Nature's Finest Setting Green Gables is truly an extraordinary estate. The combination of man's and nature's best are brilliantly on display throughout this 74-acre Woodside, California, property which has remained intact since its inception in 1911. The creation of Mortimer Fleishhacker, banker and founder of Anglo California Bank and the Great Western Power Company, at the heart of Green Gables rests its magnificent main residence and gardens that remain home to this day for the Fleishhacker family.",
 		address: "Woodside, California, 94062 United States",
@@ -14,7 +14,7 @@ export const agentEstate = [
 	{
 		id: 2,
 		agentId: "2",
-		image: "",
+		image: "2",
 		price: "1200000",
 		description: "This magnificent equestrian estate is a true Thoroughbred: Four decades in the making, the property is set amid winding roads, apple orchards, rolling hills, ancient stone walls, woodlands, and ponds, with sweeping vistas of the Westchester countryside—all just an hour from New York City.",
 		address: "Lilly Rd, Belmont, NY 14813, United States",
@@ -26,7 +26,7 @@ export const agentEstate = [
 	{
 		id: 3,
 		agentId: "3",
-		image: "",
+		image: "3",
 		price: "1500000",
 		description: "This magnificent equestrian estate is a true Thoroughbred: Four decades in the making, the property is set amid winding roads, apple orchards, rolling hills, ancient stone walls, woodlands, and ponds, with sweeping vistas of the Westchester countryside—all just an hour from New York City.",
 		address: "Paris, NY, United States",
@@ -38,7 +38,7 @@ export const agentEstate = [
 	{
 		id: 4,
 		agentId: "4",
-		image: "",
+		image: "4",
 		price: "1000000",
 		description: "This magnificent equestrian estate is a true Thoroughbred: Four decades in the making, the property is set amid winding roads, apple orchards, rolling hills, ancient stone walls, woodlands, and ponds, with sweeping vistas of the Westchester countryside—all just an hour from New York City.",
 		address: "Plimut, NY, United States",
@@ -50,7 +50,7 @@ export const agentEstate = [
 	{
 		id: 5,
 		agentId: "5",
-		image: "",
+		image: "5",
 		price: "1600000",
 		description: "This magnificent equestrian estate is a true Thoroughbred: Four decades in the making, the property is set amid winding roads, apple orchards, rolling hills, ancient stone walls, woodlands, and ponds, with sweeping vistas of the Westchester countryside—all just an hour from New York City.",
 		address: "Ockham, Massachusetts, United States",
@@ -62,7 +62,7 @@ export const agentEstate = [
 	{
 		id: 6,
 		agentId: "6",
-		image: "",
+		image: "6",
 		price: "2000000",
 		description: "This magnificent equestrian estate is a true Thoroughbred: Four decades in the making, the property is set amid winding roads, apple orchards, rolling hills, ancient stone walls, woodlands, and ponds, with sweeping vistas of the Westchester countryside—all just an hour from New York City.",
 		address: "50 New England Ave, Summit, NJ 07901, United States",
@@ -74,7 +74,7 @@ export const agentEstate = [
 	{
 		id: 7,
 		agentId: "7",
-		image: "",
+		image: "7",
 		price: "2200000",
 		description: "This magnificent equestrian estate is a true Thoroughbred: Four decades in the making, the property is set amid winding roads, apple orchards, rolling hills, ancient stone walls, woodlands, and ponds, with sweeping vistas of the Westchester countryside—all just an hour from New York City.",
 		address: "71 New England Ave Summit, NJ 07901, United States",
@@ -86,7 +86,7 @@ export const agentEstate = [
 	{
 		id: 8,
 		agentId: "8",
-		image: "",
+		image: "8",
 		price: "2300000",
 		description: "This magnificent equestrian estate is a true Thoroughbred: Four decades in the making, the property is set amid winding roads, apple orchards, rolling hills, ancient stone walls, woodlands, and ponds, with sweeping vistas of the Westchester countryside—all just an hour from New York City.",
 		address: "Glen Hazel, Pittsburgh, PA, United States",
@@ -98,7 +98,7 @@ export const agentEstate = [
 	{
 		id: 9,
 		agentId: "9",
-		image: "",
+		image: "9",
 		price: "1300000",
 		description: "This magnificent equestrian estate is a true Thoroughbred: Four decades in the making, the property is set amid winding roads, apple orchards, rolling hills, ancient stone walls, woodlands, and ponds, with sweeping vistas of the Westchester countryside—all just an hour from New York City.",
 		address: "Pennsoken Township, New Jersey, United States",
@@ -110,7 +110,7 @@ export const agentEstate = [
 	{
 		id: 10,
 		agentId: "10",
-		image: "",
+		image: "10",
 		price: "1500000",
 		description: "This magnificent equestrian estate is a true Thoroughbred: Four decades in the making, the property is set amid winding roads, apple orchards, rolling hills, ancient stone walls, woodlands, and ponds, with sweeping vistas of the Westchester countryside—all just an hour from New York City.",
 		address: "98-2 Surrey St, Cambridge, MA 02138, United States",
@@ -122,7 +122,7 @@ export const agentEstate = [
 	{
 		id: 11,
 		agentId: "1",
-		image: "",
+		image: "11",
 		price: "1000000",
 		description: "This magnificent equestrian estate is a true Thoroughbred: Four decades in the making, the property is set amid winding roads, apple orchards, rolling hills, ancient stone walls, woodlands, and ponds, with sweeping vistas of the Westchester countryside—all just an hour from New York City.",
 		address: "4300-4319 37th Rd N, Arlington, VA 22207, United States",
@@ -134,7 +134,7 @@ export const agentEstate = [
 	{
 		id: 12,
 		agentId: "2",
-		image: "",
+		image: "12",
 		price: "1200000",
 		description: "This magnificent equestrian estate is a true Thoroughbred: Four decades in the making, the property is set amid winding roads, apple orchards, rolling hills, ancient stone walls, woodlands, and ponds, with sweeping vistas of the Westchester countryside—all just an hour from New York City.",
 		address: "2365 E 57th St, Cleveland, OH 44104, United States",
@@ -146,7 +146,7 @@ export const agentEstate = [
 	{
 		id: 13,
 		agentId: "3",
-		image: "",
+		image: "13",
 		price: "1400000",
 		description: "This magnificent equestrian estate is a true Thoroughbred: Four decades in the making, the property is set amid winding roads, apple orchards, rolling hills, ancient stone walls, woodlands, and ponds, with sweeping vistas of the Westchester countryside—all just an hour from New York City.",
 		address: "1400-1480 Evans Pl, Scranton, PA 18504, United States",
@@ -158,7 +158,7 @@ export const agentEstate = [
 	{
 		id: 14,
 		agentId: "4",
-		image: "",
+		image: "14",
 		price: "1600000",
 		description: "This magnificent equestrian estate is a true Thoroughbred: Four decades in the making, the property is set amid winding roads, apple orchards, rolling hills, ancient stone walls, woodlands, and ponds, with sweeping vistas of the Westchester countryside—all just an hour from New York City.",
 		address: "42-80 Caldwell Dr, Ithaca, NY 14850, United States",
@@ -170,7 +170,7 @@ export const agentEstate = [
 	{
 		id: 15,
 		agentId: "5",
-		image: "",
+		image: "15",
 		price: "2000000",
 		description: "This magnificent equestrian estate is a true Thoroughbred: Four decades in the making, the property is set amid winding roads, apple orchards, rolling hills, ancient stone walls, woodlands, and ponds, with sweeping vistas of the Westchester countryside—all just an hour from New York City.",
 		address: "1-129 Granby St, Manchester, NH 03102, United States",
@@ -182,7 +182,7 @@ export const agentEstate = [
 	{
 		id: 16,
 		agentId: "6",
-		image: "",
+		image: "16",
 		price: "1800000",
 		description: "This magnificent equestrian estate is a true Thoroughbred: Four decades in the making, the property is set amid winding roads, apple orchards, rolling hills, ancient stone walls, woodlands, and ponds, with sweeping vistas of the Westchester countryside—all just an hour from New York City.",
 		address: "957-1023 Brentwood Rd NE, Washington, DC 20018, United States",
@@ -194,7 +194,7 @@ export const agentEstate = [
 	{
 		id: 17,
 		agentId: "7",
-		image: "",
+		image: "17",
 		price: "1600000",
 		description: "This magnificent equestrian estate is a true Thoroughbred: Four decades in the making, the property is set amid winding roads, apple orchards, rolling hills, ancient stone walls, woodlands, and ponds, with sweeping vistas of the Westchester countryside—all just an hour from New York City.",
 		address: "Virginia, United States",
@@ -206,7 +206,7 @@ export const agentEstate = [
 	{
 		id: 18,
 		agentId: "8",
-		image: "",
+		image: "18",
 		price: "1400000",
 		description: "This magnificent equestrian estate is a true Thoroughbred: Four decades in the making, the property is set amid winding roads, apple orchards, rolling hills, ancient stone walls, woodlands, and ponds, with sweeping vistas of the Westchester countryside—all just an hour from New York City.",
 		address: "Physical Education Ct, Albany, NY 12203, United States",
@@ -218,7 +218,7 @@ export const agentEstate = [
 	{
 		id: 19,
 		agentId: "9",
-		image: "",
+		image: "19",
 		price: "2400000",
 		description: "This magnificent equestrian estate is a true Thoroughbred: Four decades in the making, the property is set amid winding roads, apple orchards, rolling hills, ancient stone walls, woodlands, and ponds, with sweeping vistas of the Westchester countryside—all just an hour from New York City.",
 		address: "100 St Barthelemy Rd, DuBois, PA 15801, United States",
@@ -230,7 +230,7 @@ export const agentEstate = [
 	{
 		id: 20,
 		agentId: "10",
-		image: "",
+		image: "20",
 		price: "1400000",
 		description: "This magnificent equestrian estate is a true Thoroughbred: Four decades in the making, the property is set amid winding roads, apple orchards, rolling hills, ancient stone walls, woodlands, and ponds, with sweeping vistas of the Westchester countryside—all just an hour from New York City.",
 		address: "Pamelia, New York, United States",
@@ -242,7 +242,7 @@ export const agentEstate = [
 	{
 		id: 21,
 		agentId: "1",
-		image: "",
+		image: "21",
 		price: "1700000",
 		description: "This magnificent equestrian estate is a true Thoroughbred: Four decades in the making, the property is set amid winding roads, apple orchards, rolling hills, ancient stone walls, woodlands, and ponds, with sweeping vistas of the Westchester countryside—all just an hour from New York City.",
 		address: "North Camden, Camden, NJ 08102, United States",
@@ -254,7 +254,7 @@ export const agentEstate = [
 	{
 		id: 22,
 		agentId: "2",
-		image: "",
+		image: "22",
 		price: "1400000",
 		description: "This magnificent equestrian estate is a true Thoroughbred: Four decades in the making, the property is set amid winding roads, apple orchards, rolling hills, ancient stone walls, woodlands, and ponds, with sweeping vistas of the Westchester countryside—all just an hour from New York City.",
 		address: "Maine Township, Pennsylvania, United States",
@@ -266,7 +266,7 @@ export const agentEstate = [
 	{
 		id: 23,
 		agentId: "3",
-		image: "",
+		image: "23",
 		price: "1500000",
 		description: "This magnificent equestrian estate is a true Thoroughbred: Four decades in the making, the property is set amid winding roads, apple orchards, rolling hills, ancient stone walls, woodlands, and ponds, with sweeping vistas of the Westchester countryside—all just an hour from New York City.",
 		address: "Ellicott, New York, United States",
@@ -278,7 +278,7 @@ export const agentEstate = [
 	{
 		id: 24,
 		agentId: "4",
-		image: "",
+		image: "24",
 		price: "1500000",
 		description: "This magnificent equestrian estate is a true Thoroughbred: Four decades in the making, the property is set amid winding roads, apple orchards, rolling hills, ancient stone walls, woodlands, and ponds, with sweeping vistas of the Westchester countryside—all just an hour from New York City.",
 		address: "Koch Rd, Milford, PA 18337, United States",
@@ -290,7 +290,7 @@ export const agentEstate = [
 	{
 		id: 25,
 		agentId: "5",
-		image: "",
+		image: "25",
 		price: "1800000",
 		description: "This magnificent equestrian estate is a true Thoroughbred: Four decades in the making, the property is set amid winding roads, apple orchards, rolling hills, ancient stone walls, woodlands, and ponds, with sweeping vistas of the Westchester countryside—all just an hour from New York City.",
 		address: "Upper Socon Township, Pennsylvania, United States",
@@ -302,7 +302,7 @@ export const agentEstate = [
 	{
 		id: 26,
 		agentId: "6",
-		image: "",
+		image: "26",
 		price: "1300000",
 		description: "This magnificent equestrian estate is a true Thoroughbred: Four decades in the making, the property is set amid winding roads, apple orchards, rolling hills, ancient stone walls, woodlands, and ponds, with sweeping vistas of the Westchester countryside—all just an hour from New York City.",
 		address: "Hopwell Township, Pennsylvania, United States",
@@ -314,7 +314,7 @@ export const agentEstate = [
 	{
 		id: 27,
 		agentId: "7",
-		image: "",
+		image: "27",
 		price: "2000000",
 		description: "This magnificent equestrian estate is a true Thoroughbred: Four decades in the making, the property is set amid winding roads, apple orchards, rolling hills, ancient stone walls, woodlands, and ponds, with sweeping vistas of the Westchester countryside—all just an hour from New York City.",
 		address: "Edgevale Dr, Erie, PA 16509, United States",
@@ -326,7 +326,7 @@ export const agentEstate = [
 	{
 		id: 28,
 		agentId: "8",
-		image: "",
+		image: "28",
 		price: "2000000",
 		description: "This magnificent equestrian estate is a true Thoroughbred: Four decades in the making, the property is set amid winding roads, apple orchards, rolling hills, ancient stone walls, woodlands, and ponds, with sweeping vistas of the Westchester countryside—all just an hour from New York City.",
 		address: "Newfan, New York, United States",
@@ -338,7 +338,7 @@ export const agentEstate = [
 	{
 		id: 29,
 		agentId: "9",
-		image: "",
+		image: "29",
 		price: "2100000",
 		description: "This magnificent equestrian estate is a true Thoroughbred: Four decades in the making, the property is set amid winding roads, apple orchards, rolling hills, ancient stone walls, woodlands, and ponds, with sweeping vistas of the Westchester countryside—all just an hour from New York City.",
 		address: "Haldimand, Ontario, Canada",
@@ -350,7 +350,7 @@ export const agentEstate = [
 	{
 		id: 30,
 		agentId: "10",
-		image: "",
+		image: "30",
 		price: "1900000",
 		description: "This magnificent equestrian estate is a true Thoroughbred: Four decades in the making, the property is set amid winding roads, apple orchards, rolling hills, ancient stone walls, woodlands, and ponds, with sweeping vistas of the Westchester countryside—all just an hour from New York City.",
 		address: "Linton Rd, Andover, OH 44003, United States",
