@@ -135,7 +135,7 @@ export default class PopupFormView extends JetView {
 		this.getRoot().show();
 		const someBtnAction = id ? "Save changes" : "Add new deal";
 		const someHeadAction = id ? "Edit this deal" : "Add new deal";
-		if (someBtnAction === "Save changes") {
+		if (id) {
 			this.$$("category").disable();
 		}
 		else {
