@@ -14,6 +14,7 @@ export default class PopupFormView extends JetView {
 			position: "center",
 			width: 500,
 			move: true,
+			modal: true,
 			head: " ",
 			body: {
 				view: "form",
@@ -49,6 +50,7 @@ export default class PopupFormView extends JetView {
 					},
 					{
 						label: "Category",
+						localId: "category",
 						labelWidth: 150,
 						view: "combo",
 						name: "categoryId",
@@ -133,11 +135,17 @@ export default class PopupFormView extends JetView {
 		this.getRoot().show();
 		const someBtnAction = id ? "Save changes" : "Add new deal";
 		const someHeadAction = id ? "Edit this deal" : "Add new deal";
+		if (id) {
+			this.$$("category").disable();
+		}
+		else {
+			this.$$("category").enable();
+		}
 		this.getRoot().getHead().setHTML(someHeadAction);
 		this.$$("btn").setValue(someBtnAction);
 	}
 
-	closeForm() {
+	clearForm() {
 		this.form.clear();
 		this.form.clearValidation();
 		this.getRoot().hide();
@@ -154,7 +162,27 @@ export default class PopupFormView extends JetView {
 					deals.add(values, 0);
 				}
 			});
-			this.closeForm();
+			this.clearForm();
+		}
+	}
+
+	closeForm() {
+		if (this.form.isDirty()) {
+			webix.confirm({
+				title: "Close without saving changes",
+				ok: "Yes",
+				cancel: "No",
+				text: "Are you sure you want to close without saving changes?"
+			}).then(() => webix.confirm({
+				title: "Warning!",
+				type: "confirm-warning",
+				text: "You are about to agree. Are you sure?"
+			})).then(() => {
+				this.clearForm();
+			});
+		}
+		else {
+			this.clearForm();
 		}
 	}
 }

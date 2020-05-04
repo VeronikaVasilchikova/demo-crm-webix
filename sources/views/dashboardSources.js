@@ -1,10 +1,9 @@
 import {JetView} from "webix-jet";
-import {sources} from "../../models/sources";
+import {sources} from "../models/sources";
 
-export default class SoucesrView extends JetView {
+export default class DashboardSourcesView extends JetView {
 	config() {
 		return {
-			gravity: 1,
 			rows: [
 				{
 					template: "Top source",
@@ -17,7 +16,7 @@ export default class SoucesrView extends JetView {
 					type: "donut",
 					value: "#value#",
 					color: "#color#",
-					innerRadius: 80,
+					innerRadius: 60,
 					shadow: 0,
 					gradient: true,
 					lineColor: obj => obj.color,
@@ -40,6 +39,16 @@ export default class SoucesrView extends JetView {
 	}
 
 	init() {
-		this.$$("sources").parse(sources);
+		this.sources = this.$$("sources");
+	}
+
+	urlChange() {
+		const id = this.getParam("id", true);
+		this.sources.clearAll();
+		this.sources.refresh();
+		if (id && sources.exists(id)) {
+			const item = sources.getItem(id);
+			this.sources.parse(item.title);
+		}
 	}
 }

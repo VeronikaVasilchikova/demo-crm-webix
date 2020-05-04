@@ -1,10 +1,9 @@
 import {JetView} from "webix-jet";
-import {dealsProgress} from "../../models/dealsProgress";
+import {analiticsProgress} from "../models/analiticsProgress";
 
-export default class ProgressView extends JetView {
+export default class DashboardDealsProgressView extends JetView {
 	config() {
 		return {
-			gravity: 1.5,
 			rows: [
 				{
 					template: "Deals progress by count",
@@ -41,6 +40,16 @@ export default class ProgressView extends JetView {
 	}
 
 	init() {
-		this.$$("chart").parse(dealsProgress);
+		this.chart = this.$$("chart");
+	}
+
+	urlChange() {
+		const id = this.getParam("id", true);
+		this.chart.clearAll();
+		this.chart.refresh();
+		if (id && analiticsProgress.exists(id)) {
+			const item = analiticsProgress.getItem(id);
+			this.chart.parse(item.title);
+		}
 	}
 }

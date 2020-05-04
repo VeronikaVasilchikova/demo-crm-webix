@@ -1,5 +1,6 @@
 import {JetView} from "webix-jet";
 import {agents} from "../models/agents";
+import "../webix/nstateicon";
 
 export default class AgentssView extends JetView {
 	config() {
@@ -10,10 +11,43 @@ export default class AgentssView extends JetView {
 						{
 							view: "toolbar",
 							localId: "toolbar",
+							visibleBatch: "default",
 							elements: [
 								{width: 8},
-								{view: "label", label: "Agents"},
-								{},
+								{
+									view: "label",
+									label: "Agents",
+									batch: "default"
+								},
+								{batch: "default"},
+								{
+									view: "text",
+									batch: "search",
+									localId: "search",
+									on: {
+										onTimedKeyPress() {
+											const input = this.getValue().toLowerCase();
+											this.$scope.$$("list").filter(obj => {
+												return obj.name.toLowerCase().indexOf(input) !== -1;
+											});
+										}
+									}
+								},
+								{
+									view: "nstateicon",
+									localId: "nstateicon",
+									icons: ["mdi mdi-magnify", "mdi mdi-close"],
+									states: ["default", "search"],
+									on: {
+										onStateChange: (state) => {
+											const batch = this.$$("nstateicon").config.states[state];
+											this.$$("toolbar").showBatch(batch);
+											if (batch === "search") {
+												this.$$("search").focus();
+											}
+										}
+									}
+								},
 								{
 									view: "icon",
 									icon: "mdi mdi-arrow-down",
@@ -43,10 +77,10 @@ export default class AgentssView extends JetView {
 							select: true,
 							type: {
 								template: obj => `
-									<image class="agentPhoto" src="${obj.photo || "data/photos/contact_photo.jpg"}" />
+									<image class="agentPhoto" src="${obj.image ? `data/agents_images/${obj.image}.png` : "data/photos/contact_photo.jpg"}"/>
 									<div class="text">
 											<span class="agentName">${obj.name}</span>
-											<span class="agentMoney">$${obj.topDealValue}</span>
+											<span class="agentMoney">$ ${obj.topDealValue}</span>
 									</div>`,
 								height: 66
 							}

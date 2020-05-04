@@ -15,7 +15,6 @@ export default class AgentsSplineChartView extends JetView {
 					localId: "stats",
 					view: "chart",
 					type: "scatter",
-					height: 300,
 					xValue: "#week#",
 					padding: {
 						top: 4,

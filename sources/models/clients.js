@@ -1,4 +1,4 @@
-const data = [
+export const clientData = [
 	{id: 1, clientName: "Cyril Barone", email: "CyrilBarone@gmail.com", phone: "+77777", source: "https://xbsoftware.com"},
 	{id: 2, clientName: "Dottie Ward", email: "DottieWard@gmail.com", phone: "+77777", source: "https://xbsoftware.com"},
 	{id: 3, clientName: "Tommie Shurtleff", email: "TommieShurtleff@gmail.com", phone: "+77777", source: "https://xbsoftware.com"},
@@ -32,15 +32,21 @@ const data = [
 ];
 
 export const clients = new webix.DataCollection({
-	data,
+	data: clientData,
 	scheme: {
 		$init: (obj) => {
+			obj.value = obj.clientName;
+		},
+		$change: (obj) => {
+			obj.value = obj.clientName;
+		},
+		$save: (obj) => {
 			obj.value = obj.clientName;
 		}
 	}
 });
 
-export const usersClients = data.map((item) => {
+export const usersClients = clientData.map((item) => {
 	const obj = {
 		id: item.id,
 		value: item.clientName

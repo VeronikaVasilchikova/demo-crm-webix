@@ -11,6 +11,7 @@ export default class TopView extends JetView {
 				{id: "dashboard", value: "Dashboard", icon: "mdi mdi-home"},
 				{id: "deals", value: "Deals", icon: "mdi mdi-briefcase"},
 				{id: "agents", value: "Agents", icon: "mdi mdi-face-agent"},
+				{id: "listing", value: "Listing", icon: "mdi mdi-timetable"},
 				{id: "tasks", value: "Tasks", icon: "mdi mdi-timetable"},
 				{id: "contactus", value: "Contact us", icon: "mdi mdi-contacts"}
 			]
@@ -40,7 +41,7 @@ export default class TopView extends JetView {
 				},
 				{
 					template: `
-						<span class="agentname">Reney Mckelney</span>
+						<span class="agentname">Thomas Stanley</span>
 						<span>Account Settings</span>
 					`,
 					width: 150,
@@ -48,7 +49,7 @@ export default class TopView extends JetView {
 				},
 				{
 					template: `
-						<image class="main_photo" src="data/photos/contact_photo.jpg">
+						<image class="main_photo" src="data/agents_images/user.png">
 						<span class="webix_icon mdi mdi-circle status green"></span>
 					`,
 					width: 60,

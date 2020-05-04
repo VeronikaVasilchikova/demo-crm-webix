@@ -39,12 +39,15 @@ export default class DealDetailsVariantsView extends JetView {
 					select: true,
 					type: {
 						width: "auto",
-						height: 200,
+						height: 300,
 						type: "tiles",
 						template: obj => `
 							<div class="estateVariants">
-								<image class="estateImage" src="${obj.image || "data/images/estate.jpg"}" />
+								<div class="estateVariants_left">
+									<image class="estateImage" src="${obj.image ? `data/estate_images/${obj.image}.jpg` : "data/images/estate.jpg"}" />
+								</div>
 								<div>
+									<h3 class="estatePrice">${obj.label}</h3>
 									<h3 class="estatePrice">$ ${obj.price}</h3>
 									<h4 class="estateAddress">${obj.address}</h4>
 									<p class="estateDescription">${obj.description}</p>

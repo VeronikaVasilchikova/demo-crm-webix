@@ -1,11 +1,12 @@
 import {JetView} from "webix-jet";
-import {kanbanData} from "../../models/kanbanData";
+import {kanbanData} from "../../models/deals";
 import {usersAgents} from "../../models/agents";
 
 export default class KanBanView extends JetView {
 	config() {
 		const config = {
 			view: "kanban",
+			localId: "kanban",
 			cols: [
 				{
 					header: "Request",
@@ -61,31 +62,36 @@ export default class KanBanView extends JetView {
 					body: {
 						view: "kanbanlist",
 						status: "escrow"
-					}
+					},
+					collapsed: true
 				},
 				{
 					header: "Inspections",
 					body: {
 						view: "kanbanlist",
 						status: "inspections"
-					}
+					},
+					collapsed: true
 				},
 				{
 					header: "Lending",
 					body: {
 						view: "kanbanlist",
 						status: "lending"
-					}
+					},
+					collapsed: true
 				},
 				{
 					header: "Closing",
 					body: {
 						view: "kanbanlist",
 						status: "closing"
-					}
+					},
+					collapsed: true
 				}
 			],
 			editor: true,
+			cardActions: true,
 			users: usersAgents,
 			tags: [
 				{id: 1, value: "Sell"},
@@ -107,5 +113,20 @@ export default class KanBanView extends JetView {
 
 	init() {
 		this.getRoot().parse(kanbanData);
+		this.$$("kanban").attachEvent("onListItemDblClick", (itemId, ev, node, list) => {
+			const id = kanbanData[Number(itemId) - 1].dealId;
+			const categoryId = kanbanData[Number(itemId) - 1].categoryId;
+			let category = "";
+			if (categoryId === "1") {
+				category = "Sell";
+			}
+			else if (categoryId === "2") {
+				category = "Rent";
+			}
+			else if (categoryId === "3") {
+				category = "Buy";
+			}
+			this.show(`/top/detailsOfDeals?id=${id}?categoty=${category}`);
+		});
 	}
 }

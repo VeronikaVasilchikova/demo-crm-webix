@@ -8,8 +8,8 @@ const numberToStr = webix.Number.numToStr({
 export const analitics = new webix.DataCollection({
 	data: [
 		{
-			id: 1,
-			period: "week",
+			id: "1",
+			period: "last week",
 			title: [
 				{id: 1, value: "Open deals", color: "", number: "4", amount: "40000"},
 				{id: 2, value: "Lost deals", color: "red", number: "3", amount: "30000"},
@@ -17,8 +17,8 @@ export const analitics = new webix.DataCollection({
 			]
 		},
 		{
-			id: 2,
-			period: "month",
+			id: "2",
+			period: "last month",
 			title: [
 				{id: 1, value: "Open deals", color: "", number: "15", amount: "150000"},
 				{id: 2, value: "Lost deals", color: "red", number: "5", amount: "50000"},
@@ -26,8 +26,8 @@ export const analitics = new webix.DataCollection({
 			]
 		},
 		{
-			id: 3,
-			period: "90days",
+			id: "3",
+			period: "last 90 days",
 			title: [
 				{id: 1, value: "Open deals", color: "", number: "25", amount: "250000"},
 				{id: 2, value: "Lost deals", color: "red", number: "7", amount: "70000"},
