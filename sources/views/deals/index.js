@@ -6,7 +6,7 @@ export default class TopView extends JetView {
 	config() {
 		const tabbar = {
 			view: "tabbar",
-			value: "listOfDeals",
+			// value: "listOfDeals",
 			localId: "tabbar",
 			multiview: true,
 			options: [
@@ -21,6 +21,7 @@ export default class TopView extends JetView {
 			rows: [
 				tabbar,
 				{
+					localId: "deals",
 					cells: [
 						{localId: "listOfDeals", rows: [ListOfDealsView]},
 						{localId: "kanban", rows: [KanbanView]}
@@ -31,6 +32,21 @@ export default class TopView extends JetView {
 	}
 
 	init() {
-		this.$$("tabbar").attachEvent("onChange", id => this.$$(id).show());
+		this.$$("tabbar").attachEvent("onChange", (id) => {
+			this.setParam("id", id, true);
+			this.$$(id).show();
+		});
+	}
+
+	urlChange() {
+		const id = this.getParam("id", true);
+		if (id) {
+			this.$$(id).show();
+			this.$$("tabbar").config.value = id;
+			this.$$("tabbar").refresh();
+		}
+		else {
+			this.$$("listOfDeals").show();
+		}
 	}
 }

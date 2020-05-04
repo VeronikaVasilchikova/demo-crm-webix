@@ -56,19 +56,17 @@ const data = [
 	}
 ];
 
-const newData = data.map(item => {
-	return {
-		id: item.id,
-		period: item.period,
-		title: item.title.filter(item => Number(item.topDealValue) > 500000)
-	};
-});
+const newData = data.map(item => ({
+	id: item.id,
+	period: item.period,
+	title: item.title.filter(it => Number(it.topDealValue) > 500000)
+}));
 
 export const agentsTopFive = new webix.DataCollection({
 	data: newData,
 	scheme: {
 		$init: (obj) => {
-			obj.title.forEach(item => {
+			obj.title.forEach((item) => {
 				item.topDealValue = numberToStr(item.topDealValue);
 			});
 		}

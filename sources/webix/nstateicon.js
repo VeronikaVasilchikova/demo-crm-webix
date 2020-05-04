@@ -9,7 +9,7 @@ webix.protoUI({
 			config.icon = config.icons[state];
 		}
 		this.attachEvent("onItemClick", () => {
-			let state = this.config.state;
+			state = this.config.state;
 			state++;
 			if (config.icons && state >= config.icons.length) {
 				state = 0;

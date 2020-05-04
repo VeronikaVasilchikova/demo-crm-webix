@@ -54,13 +54,22 @@ border-color: #fff;
 	justify-content: space-between;
 	align-items: center;
 	width: 300px;
-	border: 1px solid #EDEFF0;
 	padding: 5px 20px 5px 20px;
+	border-radius: 4px;
+}
+.deals_ {
+	border: 2px solid grey;
+}
+.deals_red {
+	border: 2px solid #f58f90;
+}
+.deals_green {
+	border: 2px solid #52cfa1;
 }
 .deals_title {
 	text-transform: uppercase;
 	font-weight: 500;
-	font-size: 14px;
+	font-size: 16px;
 }
 .deals_number {
 	font-weight: 500;
@@ -113,19 +122,57 @@ border-color: #fff;
 	background: #97f5f0;
 }
 
+/* detailsOfDeals */
+.deal_header {
+	text-align: center;
+}
+
 /* dealDetailsVariants */
-.estateImage {
-	width: 250px;
-	display: block;
-	border-radius: 10px;
+.webix_dataview_item.tiles:hover {
+	opacity: 0.7;
 }
 .estateVariants {
 	display: flex;
 	justify-content: space-between;
 	align-items: center;
 }
-.estateVariants_left {
+.estateImage {
+	display: block;
+	height: 150px;
+	border-radius: 5px;
 	margin-right: 15px;
+}
+.estateLabel,
+.estatePrice,
+.estateAddress {
+	display: block;
+	text-align: center;
+}
+.estateLabel {
+	font-weight: 700;
+}
+
+/* dealDetailsForSell */
+.estateVariants.sell {
+	margin-top: 15px;
+	display: flex;
+	justify-content: space-between;
+	align-items: center;
+}
+.estateImage.sell {
+	display: block;
+	height: 180px;
+	border-radius: 5px;
+	margin-right: 15px;
+}
+.estateLabel.sell,
+.estatePrice.sell,
+.estateAddress.sell {
+	display: block;
+	text-align: center;
+}
+.estateLabel.sell {
+	font-weight: 700;
 }
 
 /* Agents */
@@ -134,7 +181,6 @@ border-color: #fff;
 	border-radius: 25px;
 	width: 48px;
 	height: 48px;
-	float: left;
 }
 .text {
 	padding: 4px 4px 4px 16px;
@@ -162,11 +208,14 @@ border-color: #fff;
 /* AgentsGoogleMap */
 .estate_left {
 	display: flex;
-	justify-content: space-between;
+	justify-content: flex-start;
 	align-items: center;
 	letter-spacing: 0.2px;
 	line-height: 1;
 	margin-top: 5px;
+}
+.estate_left:hover {
+	opacity: 0.8;
 }
 .estate {
 	width: 100px;
@@ -178,81 +227,135 @@ border-color: #fff;
 	display: block;
 	font-weight: 700;
 }
-.estate_address {
-
-}
 .estate_price {
 	display: block;
 }
 
-/* Tasks */
-.touch_demo {
-	background: #EFF1FB;
-	position: relative;
-}
-.demo_qr_container {
-	position:absolute;
-	left:calc(50% - 550px); top:280px;
-	text-align: center;
-	width: 240px;
-}
-.demo_qr {
-	/* background:url(../common/qr-code-scheduler.png); */
-	background-size: contain;
-	width:200px; height:200px;
-	margin: 0 auto;
-}
-.demo_screen{
-	width:370px;
-	height:656px;
-	position:absolute;
-	top:118px;
-	left:5px;
-	right: 0;
-	margin: 0 auto;
-	background: white;
-}
-.iphone_screen{
-	/* background: url(/assets/demo/scheduler/iphone.png) no-repeat; */
-	width:448px;
-	height:990px;
-	position:absolute;
-	top:10px;
-	left:0;
-	right: 0;
-	margin: 0 auto;
-}
-.iphone_text{
-	font:16px/25px "Roboto", sans-serif;
-	letter-spacing: 0;
-	color: #666;
-	padding-top: 15px;
-}
-.iphone_text a {
-	color: #009688;
-}
-.iphone_text a:hover {
-	color: #00baa8;
-}
-
-@media screen and (max-width: 1300px) {
-	.demo_qr_container {
-		left: 70px;
-	}
-	.iphone_screen {
-		right: auto;
-		left: 340px;
-	}
-	.demo_screen {
-		right: auto;
-		left:382px;
-	}
-}
-
-/* Contactus */
+/* Tasks and Contactus */
 .webix_view.ifr_template .webix_template{
-	padding:0px;
+	padding: 0px;
 }
 .webix_view.ifr_template > .webix_disabled{
-	opacity:1 !important;
+	opacity: 1 !important;
+}
+
+/* Listing */
+.listing {
+	margin-top: 10px;
+	display: flex;
+	flex-direction: column;
+	justify-content: center;
+}
+.listing_estate {
+	display: block;
+	height: 180px;
+	border-radius: 5px;
+}
+.listing:hover {
+	opacity: 0.8;
+	transition: 0.5s;
+}
+.listing:not(:hover) {
+	opacity: 1;
+	transition: 0.5s;
+}
+.listing_label {
+	display: block;
+	text-align: center;
+	font-weight: 700;
+}
+.listing_descr {
+	display: block;
+	text-align: center;
+}
+.listing_price {
+	display: block;
+	text-align: center;
+}
+
+/* estatedetails */
+.close_button .webix_button:hover{
+	background-color: #f58f90;
+	color: #fff;
+}
+.estateDetails_img {
+	margin: 0 auto;
+	display: block;
+	border-radius: 5px;
+}
+.estateDetails_label,
+.estateDetails_address,
+.estateDetails_price {
+	display: block;
+	text-align: center;
+}
+.estateDetails_price {
+	margin-bottom: 10px;
+}
+.estateDetails_label {
+	font-size: 20px;
+	font-weight: 700;
+	margin-bottom: 10px;
+}
+.estateDetails_descr {
+	text-align: center;
+}
+.facilities {
+	padding: 20px 0;
+	display: flex;
+	justify-content: space-around;
+}
+.facilities div {
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+}
+.facilities div span {
+	display: block;
+}
+.facilities .fas,
+.facilities .fas {
+	display: block;
+	font-size: 26px;
+	margin-bottom: 10px;
+}
+.facilities .fas:hover,
+.facilities .fas:hover {
+	cursor: pointer;
+	opacity: 0.6;
+}
+.estate_agent_name {
+	display: block;
+	font-size: 16px;
+	font-weight: 700;
+	padding-top: 8px;
+	text-align: center;
+}
+.webix_view.estate_agent_photo > div {
+	padding: 0px 0px 0px 0px;
+}
+.webix_view.email,
+.webix_view.phone {
+	border: none;
+}
+.webix_view.email span,
+.webix_view.phone span,
+.webix_view.email a,
+.webix_view.phone a {
+	font-family: Roboto, sans-serif;
+	font-size: 16px;
+	font-weight: 500;
+	color: #475466;
+}
+.webix_view.email a,
+.webix_view.phone a {
+	text-decoration: none;
+}
+.webix_view.email a:hover,
+.webix_view.phone a:hover {
+	text-decoration: underline;
+	color: #1CA1C1;
+}
+.image .webix_template{
+	padding: 0;
 }

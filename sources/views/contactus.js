@@ -6,7 +6,8 @@ export default class ContactusView extends JetView {
 			rows: [
 				{
 					template: "Take a look at our Custom Solutions for Real Estate Business",
-					type: "header"
+					type: "header",
+					css: "chart_header"
 				},
 				{
 					css: "ifr_template",
@@ -14,10 +15,15 @@ export default class ContactusView extends JetView {
 					localId: "iframe",
 					on: {
 						onAfterLoad() {
-							this.getWindow().document.querySelector(".global-header").style.display = "none";
-							this.getWindow().document.querySelector(".section-info-row-get-start").style.display = "none";
-							this.getWindow().document.querySelector(".global-footer-wrap").style.display = "none";
-							if (this.hideProgress) this.hideProgress();
+							try {
+								this.getWindow().document.querySelector(".global-header").style.display = "none";
+								this.getWindow().document.querySelector(".section-info-row-get-start").style.display = "none";
+								this.getWindow().document.querySelector(".global-footer-wrap").style.display = "none";
+							}
+							catch (err) { /* when demo is opened on localhost */ }
+							if (this.hideProgress) {
+								this.hideProgress();
+							}
 							this.enable();
 						}
 					}

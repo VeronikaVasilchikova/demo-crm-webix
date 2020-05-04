@@ -11,7 +11,7 @@ export default class TopView extends JetView {
 				{id: "dashboard", value: "Dashboard", icon: "mdi mdi-home"},
 				{id: "deals", value: "Deals", icon: "mdi mdi-briefcase"},
 				{id: "agents", value: "Agents", icon: "mdi mdi-face-agent"},
-				{id: "listing", value: "Listing", icon: "mdi mdi-timetable"},
+				{id: "listing", value: "Listing", icon: "mdi mdi-table"},
 				{id: "tasks", value: "Tasks", icon: "mdi mdi-timetable"},
 				{id: "contactus", value: "Contact us", icon: "mdi mdi-contacts"}
 			]

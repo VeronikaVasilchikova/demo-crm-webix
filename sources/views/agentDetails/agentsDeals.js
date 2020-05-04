@@ -12,7 +12,6 @@ export default class AgentsDealsView extends JetView {
 			localId: "grid",
 			css: "webix_data_border webix_header_border",
 			scroll: "y",
-			autoconfig: true,
 			rowCss: "#css#",
 			select: true,
 			columns: [
@@ -57,7 +56,7 @@ export default class AgentsDealsView extends JetView {
 							return dealsProgress.getItem(obj.dealProgressId).value;
 						}
 						return "";
-					},
+					}
 				},
 				{
 					id: "statusId",
