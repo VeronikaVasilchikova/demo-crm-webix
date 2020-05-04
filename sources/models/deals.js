@@ -3,7 +3,7 @@ import {clientData} from "./clients";
 const strToDate = webix.Date.strToDate("%Y-%m-%d");
 const dateToStr = webix.Date.dateToStr("%Y-%m-%d");
 
-const data = [
+export const data = [
 	{
 		id: 1,
 		clientNameId: "1",
@@ -145,8 +145,8 @@ const data = [
 		nextActivity: "",
 		statusId: "3",
 		activity: [
-			{id: 1, value: "Request", date: "2020-04-10"},
-			{id: 2, value: "Closing", date: "2020-04-09"}
+			{id: 1, value: "Request", date: "2019-12-28"},
+			{id: 2, value: "Closing", date: "2020-04-05"}
 		]
 	},
 	{

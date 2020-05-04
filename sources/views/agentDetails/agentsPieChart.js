@@ -24,7 +24,7 @@ export default class AgentsPieChartView extends JetView {
 						template: "#value#"
 					},
 					legend: {
-						width: 100,
+						width: 60,
 						align: "right",
 						valign: "middle",
 						template: obj => obj.name

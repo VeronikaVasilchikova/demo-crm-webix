@@ -39,20 +39,18 @@ export default class DealDetailsVariantsView extends JetView {
 					select: true,
 					type: {
 						width: "auto",
-						height: 300,
+						height: 250,
 						type: "tiles",
 						template: obj => `
 							<div class="estateVariants">
-								<div class="estateVariants_left">
-									<image class="estateImage" src="${obj.image ? `data/estate_images/${obj.image}.jpg` : "data/images/estate.jpg"}" />
-								</div>
+								<image class="estateImage" src="${obj.image ? `data/estate_images/${obj.image}.jpg` : "data/images/estate.jpg"}" />
 								<div>
-									<h3 class="estatePrice">${obj.label}</h3>
-									<h3 class="estatePrice">$ ${obj.price}</h3>
-									<h4 class="estateAddress">${obj.address}</h4>
-									<p class="estateDescription">${obj.description}</p>
+									<span class="estateLabel">${obj.label}</span>
+									<span class="estatePrice"><b>Price: </b>$ ${obj.price}</span>
+									<span class="estateAddress"><b>Address: </b>${obj.address}</span>
 								</div>
 							</div>
+							<p class="estateDescription">${obj.description}</p>
 						`
 					}
 				}
@@ -63,8 +61,13 @@ export default class DealDetailsVariantsView extends JetView {
 	init() {
 		const dataview = this.$$("dataview");
 		const id = this.getParam("id", true);
+		const category = this.getParam("category", true);
 		dataview.sync(estate, () => {
 			dataview.filter(item => item.dealId.toString() === id.toString());
+		});
+
+		dataview.attachEvent("onItemClick", (estateId) => {
+			this.show(`/top/estateDetails?estateId=${estateId}?id=${id}?category=${category}`);
 		});
 	}
 }

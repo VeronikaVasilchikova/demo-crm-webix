@@ -19,7 +19,7 @@ export default class DashboardView extends JetView {
 					view: "toolbar",
 					cols: [
 						{
-							view: "combo",
+							view: "richselect",
 							value: "2",
 							localId: "combo",
 							options: [
@@ -35,39 +35,43 @@ export default class DashboardView extends JetView {
 		};
 
 		return {
-			type: "space",
-			rows: [
-				{
-					gravity: 1,
-					rows: [
-						dealsAnalitics,
-						DashboardAnaliticsView
-					]
-				},
-				{
-					gravity: 1.5,
-					rows: [
-						DashboardDealsProgressView
-					]
-				},
-				{
-					type: "wide",
-					cols: [
-						{
-							gravity: 3,
-							rows: [
-								DashboardAgentsView
-							]
-						},
-						{
-							gravity: 1,
-							rows: [
-								DashboardSourcesView
-							]
-						}
-					]
-				}
-			]
+			view: "scrollview",
+			scroll: "y",
+			body: {
+				type: "wide",
+				rows: [
+					{
+						rows: [
+							dealsAnalitics,
+							DashboardAnaliticsView
+						]
+					},
+					{
+						height: 480,
+						rows: [
+							DashboardDealsProgressView
+						]
+					},
+					{
+						type: "wide",
+						height: 270,
+						cols: [
+							{
+								gravity: 3,
+								rows: [
+									DashboardAgentsView
+								]
+							},
+							{
+								gravity: 1,
+								rows: [
+									DashboardSourcesView
+								]
+							}
+						]
+					}
+				]
+			}
 		};
 	}
 

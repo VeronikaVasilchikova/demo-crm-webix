@@ -1,20 +1,32 @@
 import {JetView} from "webix-jet";
-import {schedulerData} from "../models/schedulerData";
 
 export default class TasksView extends JetView {
 	config() {
-		const config = {
-			view: "scheduler",
-			localId: "scheduler",
-			css: "iphone"
+		return {
+			css: "ifr_template",
+			view: "iframe",
+			localId: "iframe",
+			on: {
+				onAfterLoad() {
+					try {
+						this.getWindow().document.querySelector(".global-header").style.display = "none";
+						this.getWindow().document.querySelector(".section-info-row-get-start").style.display = "none";
+						this.getWindow().document.querySelector(".global-footer-wrap").style.display = "none";
+					}
+					catch (err) { /* when demo is opened on localhost */ }
+					if (this.hideProgress) {
+						this.hideProgress();
+					}
+					this.enable();
+				}
+			}
 		};
-		return webix.require({
-			"https://cdn.webix.com/site/scheduler/scheduler.js?v=7.2.7": true,
-			"https://cdn.webix.com/site/scheduler/scheduler.css?v=7.2.7": true
-		}).then(() => config);
 	}
 
 	init() {
-		this.$$("scheduler").parse(schedulerData);
+		webix.extend(this.$$("iframe"), webix.ProgressBar);
+		this.$$("iframe").disable();
+		this.$$("iframe").showProgress({type: "icon"});
+		this.$$("iframe").load("https://webix.com/scheduler/");
 	}
 }

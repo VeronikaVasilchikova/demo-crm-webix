@@ -1,5 +1,6 @@
 import {JetView} from "webix-jet";
-import {agentEstate} from "../../models/agentEstate";
+import {estateData} from "../../models/estate";
+import {data} from "../../models/deals";
 import {agents} from "../../models/agents";
 
 export default class AgentsGoogleMapView extends JetView {
@@ -16,9 +17,9 @@ export default class AgentsGoogleMapView extends JetView {
 					value: "1",
 					options: [
 						{id: 1, value: "All"},
-						{id: 2, value: "For sale"},
-						{id: 3, value: "For sold"},
-						{id: 4, value: "For rent"}
+						{id: 2, value: "Sold"},
+						{id: 3, value: "For Rent"},
+						{id: 4, value: "For Sale"}
 					]
 				},
 				{}
@@ -53,12 +54,13 @@ export default class AgentsGoogleMapView extends JetView {
 		};
 
 		return {
+			type: "wide",
 			cols: [
 				{
-					type: "space",
+					type: "wide",
 					cols: [
 						{
-							gravity: 1,
+							width: 250,
 							rows: [
 								{
 									template: "Filter",
@@ -68,7 +70,7 @@ export default class AgentsGoogleMapView extends JetView {
 							]
 						},
 						{
-							gravity: 2,
+							width: 400,
 							rows: [
 								{
 									template: "List of estates",
@@ -92,6 +94,19 @@ export default class AgentsGoogleMapView extends JetView {
 	}
 
 	urlChange() {
+		const agent = this.getParam("id", true);
+		this.list.attachEvent("onItemClick", (estateId) => {
+			this.show(`/top/estateDetails?estateId=${estateId}?agent=${agent}`);
+		});
+
+		const deals = data.filter(item => item.agentId.toString() === agent.toString())
+			.map(item => item.id);
+		let agentEstate = [];
+		deals.forEach((item) => {
+			agentEstate.push(estateData.filter(node => node.dealId.toString() === item.toString()));
+		});
+		agentEstate = agentEstate.flat();
+
 		this.radio.setValue("1");
 		this.map.clearAll();
 		this.list.clearAll();
@@ -100,29 +115,20 @@ export default class AgentsGoogleMapView extends JetView {
 			agentEstate.waitData,
 			agents.waitData
 		]).then(() => {
-			const id = this.getParam("id", true);
-			if (id && agents.exists(id)) {
-				this.map.parse(agentEstate.filter(item => item.agentId.toString() === id.toString()));
-				this.list.parse(agentEstate.filter(item => item.agentId.toString() === id.toString()));
+			if (agent && agents.exists(agent)) {
+				this.map.parse(agentEstate);
+				this.list.parse(agentEstate);
 			}
 			this.$$("radio").attachEvent("onChange", (newv) => {
 				this.map.clearAll();
 				this.list.clearAll();
 				if (newv === "1") {
-					this.map.parse(agentEstate.filter(item => item.agentId.toString() === id.toString()));
-					this.list.parse(agentEstate.filter(item => item.agentId.toString() === id.toString()));
-				}
-				else if (newv === "2") {
-					this.map.parse(agentEstate.filter(item => item.agentId.toString() === id.toString() && item.status === "Buy"));
-					this.list.parse(agentEstate.filter(item => item.agentId.toString() === id.toString() && item.status === "Buy"));
-				}
-				else if (newv === "3") {
-					this.map.parse(agentEstate.filter(item => item.agentId.toString() === id.toString() && item.status === "Sell"));
-					this.list.parse(agentEstate.filter(item => item.agentId.toString() === id.toString() && item.status === "Sell"));
+					this.map.parse(agentEstate);
+					this.list.parse(agentEstate);
 				}
 				else {
-					this.map.parse(agentEstate.filter(item => item.agentId.toString() === id.toString() && item.status === "Rent"));
-					this.list.parse(agentEstate.filter(item => item.agentId.toString() === id.toString() && item.status === "Rent"));
+					this.map.parse(agentEstate.filter(item => Number(item.categoryId) === Number(newv) - 1));
+					this.list.parse(agentEstate.filter(item => Number(item.categoryId) === Number(newv) - 1));
 				}
 			});
 		});

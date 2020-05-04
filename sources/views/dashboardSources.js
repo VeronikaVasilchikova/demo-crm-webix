@@ -16,7 +16,7 @@ export default class DashboardSourcesView extends JetView {
 					type: "donut",
 					value: "#value#",
 					color: "#color#",
-					innerRadius: 60,
+					innerRadius: 20,
 					shadow: 0,
 					gradient: true,
 					lineColor: obj => obj.color,

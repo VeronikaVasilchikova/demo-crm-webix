@@ -22,5 +22,8 @@ if (!BUILD_AS_MODULE) {
 		app.attachEvent("app:error:resolve", () => {
 			webix.delay(() => app.show("/top/dashboard"));
 		});
+		if (!webix.env.touch && webix.env.scrollSize) {
+			webix.CustomScroll.init();
+		}
 	});
 }

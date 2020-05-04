@@ -28,7 +28,15 @@ export default class ListOfDealsView extends JetView {
 			columns: [
 				{
 					id: "clientNameId",
-					header: ["Client Name", {content: "selectFilter"}],
+					header: ["Client Name", {
+						content: "textFilter",
+						compare: (cellValue, filter) => {
+							cellValue = clients.getItem(cellValue).value.toString().toLowerCase();
+							filter = filter.toString().toLowerCase();
+							return cellValue.indexOf(filter) === 0;
+						}
+					}],
+					sort: "text",
 					fillspace: true,
 					options: clients,
 					editor: "myeditor"
@@ -91,13 +99,13 @@ export default class ListOfDealsView extends JetView {
 					editor: "select"
 				},
 				{
-					header: ["", ""],
+					header: "",
 					template: "<span class='myicon'></span>",
 					adjust: true,
 					tooltip: false
 				},
 				{
-					header: ["", ""],
+					header: "",
 					template: "{common.trashIcon()}",
 					adjust: true,
 					tooltip: false
@@ -157,7 +165,6 @@ export default class ListOfDealsView extends JetView {
 		webix.UIManager.addHotKey("enter", (view) => {
 			const pos = view.getSelectedId();
 			view.edit(pos);
-			console.log(pos);
 			if (pos.column === "categoryId") {
 				webix.message({
 					text: "You can't edit this cell",

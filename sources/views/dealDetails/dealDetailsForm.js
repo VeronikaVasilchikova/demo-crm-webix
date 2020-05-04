@@ -16,30 +16,36 @@ export default class DealDetailsFormView extends JetView {
 					label: "Client Name",
 					labelWidth: 90,
 					view: "text",
-					name: "clientName"
+					name: "clientName",
+					disabled: true
 				},
 				{
 					label: "Email",
 					labelWidth: 90,
 					view: "text",
-					name: "email"
+					name: "email",
+					disabled: true
 				},
 				{
 					label: "Phone",
 					labelWidth: 90,
 					view: "text",
-					name: "phone"
+					name: "phone",
+					disabled: true
 				},
 				{
 					label: "Source",
 					labelWidth: 90,
 					view: "text",
-					name: "source"
+					name: "source",
+					disabled: true
 				},
 				{
 					view: "textarea",
 					label: "Notes",
-					placeholder: "Type text"
+					name: "notes",
+					placeholder: "Type text",
+					disabled: true
 				},
 				{
 					view: "multicombo",
@@ -49,23 +55,34 @@ export default class DealDetailsFormView extends JetView {
 					localId: "combo",
 					placeholder: "Click to add tags",
 					options: tags,
-					hidden: true
+					hidden: true,
+					disabled: true
 				},
-				{},
 				{
 					cols: [
+						{},
+						{},
 						{
 							view: "button",
 							value: "Save",
-							localId: "btn",
+							localId: "btnSaveClient",
 							type: "form",
-							click: () => this.edit(this.clientForm, clients)
+							click: () => this.edit(this.clientForm, clients),
+							hidden: true
 						},
 						{
 							view: "button",
-							value: "Reset",
+							value: "Cancel",
+							localId: "btnCancelClient",
 							type: "form",
-							click: () => this.resetForm(this.clientForm)
+							click: () => this.resetForm(this.clientForm),
+							hidden: true
+						},
+						{
+							view: "icon",
+							icon: "mdi mdi-pencil",
+							localId: "btnClientEdit",
+							click: () => this.showButtons("client")
 						}
 					]
 				}
@@ -81,40 +98,45 @@ export default class DealDetailsFormView extends JetView {
 					view: "datepicker",
 					name: "dealCreated",
 					type: "date",
-					format: webix.i18n.longDateFormatStr
+					format: webix.i18n.longDateFormatStr,
+					disabled: true
 				},
 				{
 					label: "Status",
 					labelWidth: 110,
-					view: "combo",
+					view: "richselect",
 					name: "statusId",
 					options: {
 						body: {
 							data: statuses,
 							template: "#value#"
 						}
-					}
+					},
+					disabled: true
 				},
 				{
 					label: "Agent",
 					labelWidth: 110,
-					view: "combo",
+					view: "richselect",
 					name: "agentId",
-					options: agents
+					options: agents,
+					disabled: true
 				},
 				{
 					label: "Category",
 					labelWidth: 110,
-					view: "combo",
+					view: "richselect",
 					name: "categoryId",
-					options: categories
+					options: categories,
+					disabled: true
 				},
 				{
 					label: "Deal progress",
 					labelWidth: 110,
-					view: "combo",
+					view: "richselect",
 					name: "dealProgressId",
-					options: dealsProgress
+					options: dealsProgress,
+					disabled: true
 				},
 				{
 					label: "Last activity",
@@ -122,7 +144,8 @@ export default class DealDetailsFormView extends JetView {
 					view: "datepicker",
 					name: "lastActivity",
 					type: "date",
-					format: webix.i18n.longDateFormatStr
+					format: webix.i18n.longDateFormatStr,
+					disabled: true
 				},
 				{
 					label: "Next activity",
@@ -130,23 +153,34 @@ export default class DealDetailsFormView extends JetView {
 					view: "datepicker",
 					name: "nextActivity",
 					type: "date",
-					format: webix.i18n.longDateFormatStr
+					format: webix.i18n.longDateFormatStr,
+					disabled: true
 				},
-				{},
 				{
 					cols: [
+						{},
+						{},
 						{
 							view: "button",
 							value: "Save",
-							localId: "btn",
+							localId: "btnSaveDeal",
 							type: "form",
-							click: () => this.edit(this.dealForm, deals)
+							click: () => this.edit(this.dealForm, deals),
+							hidden: true
 						},
 						{
 							view: "button",
-							value: "Reset",
+							value: "Cancel",
+							localId: "btnCancelDeal",
 							type: "form",
-							click: () => this.resetForm(this.dealForm)
+							click: () => this.resetForm(this.dealForm),
+							hidden: true
+						},
+						{
+							view: "icon",
+							icon: "mdi mdi-pencil",
+							localId: "btnDealEdit",
+							click: () => this.showButtons("deal")
 						}
 					]
 				}
@@ -157,14 +191,14 @@ export default class DealDetailsFormView extends JetView {
 			rows: [
 				{
 					template: "Deal details",
-					type: "header"
+					type: "header",
+					css: "deal_header"
 				},
 				{
 					cols: [
 						{
 							view: "form",
 							localId: "clientForm",
-							margin: 25,
 							rows: [
 								client
 							]
@@ -198,21 +232,20 @@ export default class DealDetailsFormView extends JetView {
 	}
 
 	edit(form, store) {
-		if (form.validate()) {
-			const values = form.getValues();
-			store.waitSave(() => {
-				if (values && values.id) {
-					store.updateItem(values.id, values);
-				}
-			});
-		}
+		const values = form.getValues();
+		store.waitSave(() => {
+			if (values && values.id) {
+				store.updateItem(values.id, values);
+			}
+		});
+		this.hideButtons();
 	}
 
 	resetForm(form) {
 		const values = form.getCleanValues();
 		if (form.isDirty()) {
 			webix.confirm({
-				title: "Reset without saving changes",
+				title: "Cancel without saving changes",
 				ok: "Yes",
 				cancel: "No",
 				text: "Are you sure you want to reset without saving changes?"
@@ -222,7 +255,53 @@ export default class DealDetailsFormView extends JetView {
 				text: "You are about to agree. Are you sure?"
 			})).then(() => {
 				form.setValues(values);
+				this.hideButtons();
 			});
+		}
+		else {
+			this.hideButtons();
+		}
+	}
+
+	hideButtons() {
+		if (!this.$$("btnSaveDeal").config.hidden && !this.$$("btnSaveDeal").config.hidden) {
+			const elements = Object.values(this.dealForm.elements);
+			elements.forEach((item) => {
+				item.disable();
+			});
+			this.$$("btnSaveDeal").hide();
+			this.$$("btnCancelDeal").hide();
+			this.$$("btnDealEdit").show();
+		}
+		if (!this.$$("btnSaveClient").config.hidden && !this.$$("btnSaveClient").config.hidden) {
+			const elements = Object.values(this.clientForm.elements);
+			elements.forEach((item) => {
+				item.disable();
+			});
+			this.$$("btnSaveClient").hide();
+			this.$$("btnCancelClient").hide();
+			this.$$("btnClientEdit").show();
+		}
+	}
+
+	showButtons(condition) {
+		if (condition === "deal") {
+			const elements = Object.values(this.dealForm.elements);
+			elements.forEach((item) => {
+				item.enable();
+			});
+			this.$$("btnSaveDeal").show();
+			this.$$("btnCancelDeal").show();
+			this.$$("btnDealEdit").hide();
+		}
+		if (condition === "client") {
+			const elements = Object.values(this.clientForm.elements);
+			elements.forEach((item) => {
+				item.enable();
+			});
+			this.$$("btnSaveClient").show();
+			this.$$("btnCancelClient").show();
+			this.$$("btnClientEdit").hide();
 		}
 	}
 }

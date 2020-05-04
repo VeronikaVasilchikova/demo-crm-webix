@@ -9,122 +9,145 @@ import {categories} from "../models/categories";
 export default class PopupFormView extends JetView {
 	config() {
 		return {
-			view: "window",
+			view: "popup",
 			localId: "window",
 			position: "center",
 			width: 500,
-			move: true,
 			modal: true,
-			head: " ",
 			body: {
-				view: "form",
-				localId: "form",
-				elements: [
+				rows: [
 					{
-						label: "Client Name",
-						labelWidth: 150,
-						view: "combo",
-						name: "clientNameId",
-						options: clients,
-						required: true,
-						invalidMessage: "This field must be filled"
+						template: "Edit this deal",
+						localId: "editHeader",
+						type: "header",
+						css: "chart_header",
+						hidden: true
 					},
 					{
-						label: "Deal created",
-						labelWidth: 150,
-						view: "datepicker",
-						name: "dealCreated",
-						type: "date",
-						format: webix.i18n.longDateFormatStr,
-						required: true,
-						invalidMessage: "This field must be filled"
+						template: "Add new deal",
+						localId: "addHeader",
+						type: "header",
+						css: "chart_header",
+						hidden: true
 					},
 					{
-						label: "Agent",
-						labelWidth: 150,
-						view: "combo",
-						name: "agentId",
-						options: agents,
-						required: true,
-						invalidMessage: "This field must be filled"
-					},
-					{
-						label: "Category",
-						localId: "category",
-						labelWidth: 150,
-						view: "combo",
-						name: "categoryId",
-						options: categories,
-						required: true,
-						invalidMessage: "Category must be selected"
-					},
-					{
-						label: "Last activity",
-						labelWidth: 150,
-						view: "datepicker",
-						name: "lastActivity",
-						type: "date",
-						format: webix.i18n.longDateFormatStr,
-						required: true,
-						invalidMessage: "This field must be filled"
-					},
-					{
-						label: "Next activity",
-						labelWidth: 150,
-						view: "datepicker",
-						name: "nextActivity",
-						type: "date",
-						format: webix.i18n.longDateFormatStr
-					},
-					{
-						label: "Deal progress",
-						labelWidth: 150,
-						view: "combo",
-						name: "dealProgressId",
-						options: dealsProgress
-					},
-					{
-						label: "Status",
-						labelWidth: 150,
-						view: "combo",
-						name: "statusId",
-						options: statuses,
-						required: true,
-						invalidMessage: "This field must be filled"
-					},
-					{
-						cols: [
+						view: "form",
+						localId: "form",
+						elements: [
 							{
-								view: "button",
-								value: "Save",
-								localId: "btn",
-								type: "form",
-								click: () => this.addOrEdit()
+								label: "Client Name",
+								labelWidth: 150,
+								view: "richselect",
+								name: "clientNameId",
+								options: clients,
+								required: true,
+								invalidMessage: "This field must be filled"
 							},
 							{
-								view: "button",
-								value: "Cancel",
-								type: "form",
-								click: () => this.closeForm()
-							}
-						]
-					},
-					{}
-				],
-				rules: {
-					clientNameId: webix.rules.isNotEmpty,
-					dealCreated: webix.rules.isNotEmpty,
-					agentId: webix.rules.isNotEmpty,
-					categoryId: webix.rules.isNotEmpty,
-					lastActivity: webix.rules.isNotEmpty,
-					statusId: webix.rules.isNotEmpty
-				}
+								label: "Deal created",
+								labelWidth: 150,
+								view: "datepicker",
+								name: "dealCreated",
+								type: "date",
+								format: webix.i18n.longDateFormatStr,
+								required: true,
+								invalidMessage: "This field must be filled"
+							},
+							{
+								label: "Agent",
+								labelWidth: 150,
+								view: "richselect",
+								name: "agentId",
+								options: agents,
+								required: true,
+								invalidMessage: "This field must be filled"
+							},
+							{
+								label: "Category",
+								localId: "category",
+								labelWidth: 150,
+								view: "richselect",
+								name: "categoryId",
+								options: categories,
+								required: true,
+								invalidMessage: "Category must be selected"
+							},
+							{
+								label: "Last activity",
+								labelWidth: 150,
+								view: "datepicker",
+								name: "lastActivity",
+								type: "date",
+								format: webix.i18n.longDateFormatStr,
+								required: true,
+								invalidMessage: "This field must be filled"
+							},
+							{
+								label: "Next activity",
+								labelWidth: 150,
+								view: "datepicker",
+								name: "nextActivity",
+								type: "date",
+								format: webix.i18n.longDateFormatStr
+							},
+							{
+								label: "Deal progress",
+								labelWidth: 150,
+								view: "richselect",
+								name: "dealProgressId",
+								options: dealsProgress
+							},
+							{
+								label: "Status",
+								labelWidth: 150,
+								view: "richselect",
+								name: "statusId",
+								localId: "status",
+								options: statuses,
+								required: true,
+								invalidMessage: "This field must be filled",
+								hidden: true
+							},
+							{
+								cols: [
+									{
+										view: "button",
+										value: "Save",
+										localId: "btn",
+										type: "form",
+										click: () => this.addOrEdit()
+									},
+									{
+										view: "button",
+										value: "Cancel",
+										type: "form",
+										click: () => this.closeForm()
+									}
+								]
+							},
+							{}
+						],
+						rules: {
+							clientNameId: webix.rules.isNotEmpty,
+							dealCreated: webix.rules.isNotEmpty,
+							agentId: webix.rules.isNotEmpty,
+							categoryId: webix.rules.isNotEmpty,
+							lastActivity: webix.rules.isNotEmpty,
+							statusId: webix.rules.isNotEmpty
+						}
+					}
+				]
 			}
 		};
 	}
 
 	init() {
 		this.form = this.$$("form");
+		document.addEventListener("click", (e) => {
+			if (e.target.classList.contains("webix_modal")) {
+				this.closeForm();
+			}
+		});
 	}
 
 	showPopupForm(id) {
@@ -134,14 +157,17 @@ export default class PopupFormView extends JetView {
 		}
 		this.getRoot().show();
 		const someBtnAction = id ? "Save changes" : "Add new deal";
-		const someHeadAction = id ? "Edit this deal" : "Add new deal";
 		if (id) {
 			this.$$("category").disable();
+			this.$$("status").show();
+			this.$$("editHeader").show();
+			this.$$("addHeader").hide();
 		}
 		else {
 			this.$$("category").enable();
+			this.$$("addHeader").show();
+			this.$$("editHeader").hide();
 		}
-		this.getRoot().getHead().setHTML(someHeadAction);
 		this.$$("btn").setValue(someBtnAction);
 	}
 
@@ -159,6 +185,7 @@ export default class PopupFormView extends JetView {
 					deals.updateItem(values.id, values);
 				}
 				else {
+					values.statusId = "1";
 					deals.add(values, 0);
 				}
 			});

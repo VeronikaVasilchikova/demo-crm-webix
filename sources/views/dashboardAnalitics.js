@@ -14,15 +14,15 @@ export default class DashboardAnaliticsView extends JetView {
 				width: "auto",
 				height: 100,
 				css: "dataview_deals",
-				template: `
-						<div class="deals">
-							<div>
-								<div class="deals_title">#value#</div>
-								<div class="deals_amount">$ #amount#</div>
-							</div>
-							<div style="color: #color#" class="deals_number">#number#</div>
+				template: obj => `
+					<div class="deals deals_${obj.color}">
+						<div>
+							<div class="deals_title">${obj.value}</div>
+							<div class="deals_amount">$ ${obj.amount}</div>
 						</div>
-					`
+						<div style="color: ${obj.color}" class="deals_number">${obj.number}</div>
+					</div>
+				`
 			}
 		};
 	}

@@ -7,18 +7,26 @@ import AgentsDealsView from "./agentDetails/agentsDeals";
 export default class DetailsOfDealsView extends JetView {
 	config() {
 		return {
-			type: "space",
-			rows: [
-				{rows: [AgentsGoogleMapView]},
-				{
-					type: "space",
-					cols: [
-						{rows: [AgentsPieChartView], gravity: 1},
-						{rows: [AgentsDealsView], gravity: 3}
-					]
-				},
-				{rows: [AgentsSplineChartView]}
-			]
+			view: "scrollview",
+			scroll: "y",
+			body: {
+				type: "wide",
+				rows: [
+					{rows: [AgentsGoogleMapView], height: 300},
+					{
+						height: 290,
+						type: "wide",
+						cols: [
+							{rows: [AgentsPieChartView], width: 250},
+							{rows: [AgentsDealsView]}
+						]
+					},
+					{
+						height: 300,
+						rows: [AgentsSplineChartView]
+					}
+				]
+			}
 		};
 	}
 }

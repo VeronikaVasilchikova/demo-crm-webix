@@ -5,6 +5,7 @@ import "../webix/nstateicon";
 export default class AgentssView extends JetView {
 	config() {
 		return {
+			type: "wide",
 			cols: [
 				{
 					rows: [
@@ -27,9 +28,7 @@ export default class AgentssView extends JetView {
 									on: {
 										onTimedKeyPress() {
 											const input = this.getValue().toLowerCase();
-											this.$scope.$$("list").filter(obj => {
-												return obj.name.toLowerCase().indexOf(input) !== -1;
-											});
+											this.$scope.$$("list").filter(obj => obj.name.toLowerCase().indexOf(input) !== -1);
 										}
 									}
 								},
@@ -73,7 +72,7 @@ export default class AgentssView extends JetView {
 							view: "list",
 							localId: "list",
 							css: "agents_list",
-							width: 260,
+							width: 220,
 							select: true,
 							type: {
 								template: obj => `

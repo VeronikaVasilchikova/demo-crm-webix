@@ -113,7 +113,7 @@ export default class KanBanView extends JetView {
 
 	init() {
 		this.getRoot().parse(kanbanData);
-		this.$$("kanban").attachEvent("onListItemDblClick", (itemId, ev, node, list) => {
+		this.$$("kanban").attachEvent("onListItemDblClick", (itemId) => {
 			const id = kanbanData[Number(itemId) - 1].dealId;
 			const categoryId = kanbanData[Number(itemId) - 1].categoryId;
 			let category = "";
@@ -126,7 +126,7 @@ export default class KanBanView extends JetView {
 			else if (categoryId === "3") {
 				category = "Buy";
 			}
-			this.show(`/top/detailsOfDeals?id=${id}?categoty=${category}`);
+			this.show(`/top/detailsOfDeals?id=${id}?category=${category}?kanban=true`);
 		});
 	}
 }
